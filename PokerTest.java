@@ -6,7 +6,7 @@ public class PokerTest {
 
 	@Test
 	public void cardsShouldHaveADenomination() {
-		Card c = new Card(Card.Denomination.ACE);
+		Card c = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
 		
 		Card.Denomination expected = Card.Denomination.ACE;
 		Card.Denomination actual = c.getDenomination();
@@ -16,10 +16,10 @@ public class PokerTest {
 	
 	@Test
 	public void cardsShouldHaveASuit() {
-		Card c = new Card(Card.Denomination.ACE, Card.Suit.Spades);
+		Card c = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
 		
-		Card.Suit actual = c.getSuit();
-		Card.Suit expected = Card.Suit.Spades;
+		Card.Suit actual = c.suit;
+		Card.Suit expected = Card.Suit.SPADES;
 
 		assertEquals(expected, actual);
 	}
