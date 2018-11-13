@@ -23,6 +23,16 @@ public class PokerTest {
 
 		assertEquals(expected, actual);
 	}
-
+	
+	@Test
+	public void deckShouldHave52Cards() {
+		Deck d = new Deck();
+		
+		int actual = d.size();
+		int expected = 52;
+		
+		assertEquals(expected, actual);
+	}
+	
 	
 }
