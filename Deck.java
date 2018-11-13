@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Deck {
 
 	private int size;
-		
+	ArrayList<Card> cards = new ArrayList<>();
+	
 	public Deck() {
 		for(int i = 0; i < 52;  i ++) {
+			cards.add(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
 			size ++;
 		}
 	}

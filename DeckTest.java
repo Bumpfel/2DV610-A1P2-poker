@@ -1,7 +1,6 @@
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import org.junit.Test;
 
 public class DeckTest {
 	
@@ -23,7 +22,7 @@ public class DeckTest {
 		Card actual = d.cards.get(0);
 		Card expected = mock(Card.class);
 		
-		assertEquals(expected.getClass(), actual.getClass());
+		assertEquals(expected.getClass().getSuperclass(), actual.getClass());
 	}
 
 }
