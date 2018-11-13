@@ -18,7 +18,7 @@ public class PokerTest {
 	public void cardsShouldHaveASuit() {
 		Card c = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
 		
-		Card.Suit actual = c.suit;
+		Card.Suit actual = c.getSuit();
 		Card.Suit expected = Card.Suit.SPADES;
 
 		assertEquals(expected, actual);
