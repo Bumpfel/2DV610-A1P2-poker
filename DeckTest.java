@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import static org.mockito.Mockito.mock;
 
 public class DeckTest {
 	
@@ -12,6 +13,17 @@ public class DeckTest {
 		int expected = 52;
 		
 		assertEquals(expected, actual);
+	}
+
+	
+	@Test
+	public void deckShouldContainCards() {
+		Deck d = new Deck();
+		
+		Card actual = d.cards.get(0);
+		Card expected = mock(Card.class);
+		
+		assertEquals(expected.getClass(), actual.getClass());
 	}
 
 }
