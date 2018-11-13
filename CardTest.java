@@ -2,7 +2,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class PokerTest {
+public class CardTest {
 
 	@Test
 	public void cardsShouldHaveADenomination() {
@@ -23,16 +23,6 @@ public class PokerTest {
 
 		assertEquals(expected, actual);
 	}
-	
-	@Test
-	public void deckShouldHave52Cards() {
-		Deck d = new Deck();
-		
-		int actual = d.size();
-		int expected = 52;
-		
-		assertEquals(expected, actual);
-	}
-	
+
 	
 }
