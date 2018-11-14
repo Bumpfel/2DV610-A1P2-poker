@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -24,5 +24,12 @@ public class CardTest {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void cardsWithTheSameDenominationAndSuitShouldCountAsEqual() {
+		Card sut = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
+		Card sut2 = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
+
+		assertTrue(sut.equals(sut2));
+	}
 	
 }
