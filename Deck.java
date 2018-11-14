@@ -16,4 +16,8 @@ public class Deck {
 		return size;
 	}
 	
+	public Card getTopCard() {
+		return cards.get(0);
+	}
+	
 }

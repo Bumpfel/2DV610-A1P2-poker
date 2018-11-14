@@ -19,7 +19,7 @@ public class DeckTest {
 	public void deckShouldContainCards() {
 		Deck d = new Deck();
 		
-		Card actual = d.cards.get(0);
+		Card actual = d.getTopCard();
 		Card expected = mock(Card.class);
 		
 		assertEquals(expected.getClass().getSuperclass(), actual.getClass());
