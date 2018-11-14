@@ -8,7 +8,7 @@ public class Deck {
 		init();
 	}
 	
-	public void init() {
+	void init() {
 		for(Card.Suit suit : Card.Suit.values()) {
 			for(int i = 0; i < 13;  i ++) {
 				Card c = createCard(Card.Denomination.ACE, suit);
@@ -17,7 +17,7 @@ public class Deck {
 		}
 	}
 	
-	public Card createCard(Card.Denomination d, Card.Suit s) {
+	Card createCard(Card.Denomination d, Card.Suit s) {
 		return new Card(d, s);
 	}
 	
