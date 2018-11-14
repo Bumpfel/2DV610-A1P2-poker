@@ -6,9 +6,9 @@ public class DeckTest {
 	
 	@Test
 	public void deckShouldBeOfize52() {
-		Deck d = new Deck();
+		Deck sut = new Deck();
 		
-		int actual = d.size();
+		int actual = sut.size();
 		int expected = 52;
 		
 		assertEquals(expected, actual);
@@ -17,9 +17,9 @@ public class DeckTest {
 	
 	@Test
 	public void deckShouldContainCards() {
-		Deck d = new Deck();
+		Deck sut = new Deck();
 		
-		Card actual = d.getTopCard();
+		Card actual = sut.getTopCard();
 		Card expected = mock(Card.class);
 		
 		assertEquals(expected.getClass().getSuperclass(), actual.getClass());
