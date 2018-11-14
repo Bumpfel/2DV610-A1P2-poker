@@ -88,6 +88,7 @@ public class DeckTest {
 		
 		boolean aceOfSpadesInDeck = sut.contains(Card.Denomination.ACE, Card.Suit.SPADES);
 		
+		assertTrue(aceOfSpadesInDeck);
 	}
 
 }
