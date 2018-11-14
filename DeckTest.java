@@ -69,4 +69,15 @@ public class DeckTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldReturnTrueIfDeckIsEmpty() {
+		Deck sut = new Deck();
+		
+		for(int i = 0; i < 52; i ++) {
+			sut.getTopCard();
+		}
+		
+		assertTrue(sut.isEmpty());
+	}
+
 }
