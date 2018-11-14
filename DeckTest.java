@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class DeckTest {
@@ -14,7 +17,6 @@ public class DeckTest {
 		assertEquals(expected, actual);
 	}
 
-	
 	@Test
 	public void deckShouldContainCards() {
 		Deck sut = new Deck();
@@ -97,6 +99,24 @@ public class DeckTest {
 		}
 
 		assertFalse(sut.contains(mockAceOfSpades));
+	}
+	
+	@Test
+	public void shouldShuffleCardsInDeck() {
+		Deck sut1 = new Deck();
+		Deck sut2 = new Deck();
+		
+		ArrayList<Card> list1 = new ArrayList<>();
+		ArrayList<Card> list2 = new ArrayList<>();
+		
+		sut1.shuffle();
+		sut2.shuffle();
+		
+		while(!sut1.isEmpty() && !sut2.isEmpty()) {
+			list1.add(sut1.getTopCard());
+			list2.add(sut2.getTopCard());
+		}
+		assertNotEquals(list1, list2); // Not 100% water tight, but extremely unlikely to fail. 1 in 52 factorial, I believe
 	}
 
 }
