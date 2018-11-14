@@ -31,6 +31,6 @@ public class Deck {
 	
 	
 	public boolean isEmpty() {
-		return true;
+		return cards.size() == 0;
 	}
 }

@@ -73,6 +73,8 @@ public class DeckTest {
 	public void shouldReturnTrueIfDeckIsEmpty() {
 		Deck sut = new Deck();
 		
+		assertFalse(sut.isEmpty());
+		
 		for(int i = 0; i < 52; i ++) {
 			sut.getTopCard();
 		}
