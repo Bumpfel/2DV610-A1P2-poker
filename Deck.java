@@ -33,4 +33,8 @@ public class Deck {
 	public boolean isEmpty() {
 		return cards.size() == 0;
 	}
+	
+	public boolean contains(Card.Denomination d, Card.Suit s) {
+		return true;
+	}
 }
