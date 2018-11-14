@@ -57,5 +57,16 @@ public class DeckTest {
 		verify(sutSpy, times(4)).createCard(eq(Card.Denomination.QUEEN), any());
 		verify(sutSpy, times(4)).createCard(eq(Card.Denomination.KING), any());
 	}
+	
+	@Test
+	public void gettinACardFromDeckShouldDecrementDeckSize() {
+		Deck sut = new Deck();
+		sut.getTopCard();
 
+		int expected = 51;
+		int actual = sut.size();
+		
+		assertEquals(expected, actual);
+	}
+	
 }
