@@ -34,7 +34,11 @@ public class Deck {
 		return cards.size() == 0;
 	}
 	
-	public boolean contains(Card.Denomination d, Card.Suit s) {
-		return true;
+	public boolean contains(Card c) {
+		for(Card card : cards) {
+			if(card.getDenomination() == c.getDenomination() && card.getSuit() == c.getSuit())
+				return true;
+		}
+		return false;
 	}
 }

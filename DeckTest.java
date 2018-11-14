@@ -85,10 +85,18 @@ public class DeckTest {
 	@Test
 	public void shouldReturnTrueIfCardIsInDeck() {
 		Deck sut = new Deck();
+				
+		Card mockAceOfSpades = mock(Card.class);
+		when(mockAceOfSpades.getDenomination()).thenReturn(Card.Denomination.ACE);
+		when(mockAceOfSpades.getSuit()).thenReturn(Card.Suit.SPADES);
 		
-		boolean aceOfSpadesInDeck = sut.contains(Card.Denomination.ACE, Card.Suit.SPADES);
+		assertTrue(sut.contains(mockAceOfSpades));
 		
-		assertTrue(aceOfSpadesInDeck);
+		while(!sut.isEmpty()) {
+			sut.getTopCard();
+		}
+
+		assertFalse(sut.contains(mockAceOfSpades));
 	}
 
 }
