@@ -18,5 +18,10 @@ public class Card {
 	public Suit getSuit() {
 		return suit;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return true;
+	}
 
 }
