@@ -26,7 +26,7 @@ public class Deck {
 	}
 	
 	public Card getTopCard() {
-		return cards.get(0);
+		return cards.remove(0);
 	}
 	
 }
