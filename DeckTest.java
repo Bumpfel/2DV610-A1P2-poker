@@ -1,9 +1,9 @@
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 public class DeckTest {
-	
+
 	@Test
 	public void deckShouldBeOfize52() {
 		Deck sut = new Deck();
@@ -24,5 +24,18 @@ public class DeckTest {
 		
 		assertEquals(expected.getClass().getSuperclass(), actual.getClass());
 	}
+	
+	@Test
+	public void deckShouldContain13CardsOfEachSuit() {
+		Deck sutSpy = spy(Deck.class);
+		
+		sutSpy.init();
+		
+		verify(sutSpy, times(13)).createCard(any(), eq(Card.Suit.HEARTS));
+		verify(sutSpy, times(13)).createCard(any(), eq(Card.Suit.SPADES));
+		verify(sutSpy, times(13)).createCard(any(), eq(Card.Suit.DIAMONDS));
+		verify(sutSpy, times(13)).createCard(any(), eq(Card.Suit.CLUBS));
+	}
+	
 
 }
