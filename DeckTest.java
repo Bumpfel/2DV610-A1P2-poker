@@ -109,6 +109,18 @@ public class DeckTest {
 		ArrayList<Card> list1 = new ArrayList<>();
 		ArrayList<Card> list2 = new ArrayList<>();
 		
+		while(!sut1.isEmpty() && !sut2.isEmpty()) {
+			list1.add(sut1.getTopCard());
+			list2.add(sut2.getTopCard());
+		}
+		assertEquals(list1, list2);
+
+		// Reset
+		list1.clear();
+		list2.clear();
+		sut1 = new Deck();
+		sut2 = new Deck();
+		
 		sut1.shuffle();
 		sut2.shuffle();
 		
