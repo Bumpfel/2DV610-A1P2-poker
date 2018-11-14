@@ -21,7 +21,12 @@ public class Card {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if(obj instanceof Card) {
+			Card card2 = (Card) obj;
+			return denomination == card2.getDenomination() && suit == card2.getSuit();
+		}
+		else
+			return false;
 	}
 
 }

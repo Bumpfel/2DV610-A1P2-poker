@@ -36,7 +36,7 @@ public class Deck {
 	
 	public boolean contains(Card c) {
 		for(Card card : cards) {
-			if(card.getDenomination() == c.getDenomination() && card.getSuit() == c.getSuit())
+			if(card.equals(c))
 				return true;
 		}
 		return false;

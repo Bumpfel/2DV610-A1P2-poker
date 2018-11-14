@@ -28,8 +28,11 @@ public class CardTest {
 	public void cardsWithTheSameDenominationAndSuitShouldCountAsEqual() {
 		Card sut = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
 		Card sut2 = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
-
+		Card sut3 = new Card(Card.Denomination.ACE, Card.Suit.HEARTS);
+		
 		assertTrue(sut.equals(sut2));
+		
+		assertFalse(sut.equals(sut3));
 	}
 	
 }
