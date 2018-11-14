@@ -10,8 +10,8 @@ public class Deck {
 	
 	void init() {
 		for(Card.Suit suit : Card.Suit.values()) {
-			for(int i = 0; i < 13;  i ++) {
-				Card c = createCard(Card.Denomination.ACE, suit);
+			for(Card.Denomination denomination : Card.Denomination.values()) {
+				Card c = createCard(denomination, suit);
 				cards.add(c);
 			}
 		}
