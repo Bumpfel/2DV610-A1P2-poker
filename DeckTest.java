@@ -81,5 +81,13 @@ public class DeckTest {
 		
 		assertTrue(sut.isEmpty());
 	}
+	
+	@Test
+	public void shouldReturnTrueIfCardIsInDeck() {
+		Deck sut = new Deck();
+		
+		boolean aceOfSpadesInDeck = sut.contains(Card.Denomination.ACE, Card.Suit.SPADES);
+		
+	}
 
 }
