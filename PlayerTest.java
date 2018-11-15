@@ -64,4 +64,20 @@ public class PlayerTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void shouldBeAbleToClearHand() {
+		sut = new Player();
+		
+		Card mockCard = mock(Card.class);
+		
+		sut.dealCard(mockCard);
+		sut.dealCard(mockCard);
+		sut.clearHand();
+		
+		int expected = 0;
+		int actual = sut.getSize();
+		
+		assertEquals(expected, actual);
+	}
 }
