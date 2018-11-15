@@ -35,11 +35,10 @@ public class Player {
 
 		if(values[12] == 3)
 			return Score.THREE_OF_A_KIND;
-		if(values[12] == 2 && values[11] == 2)
+		else if(values[12] == 2 && values[11] == 2)
 			return Score.TWO_PAIR;
-		if(values[12] == 2) {
+		else if(values[12] == 2)
 			return Score.PAIR;
-		}
 		else if(values[12] == 1)
 			return Score.HIGH_CARD;
 		else

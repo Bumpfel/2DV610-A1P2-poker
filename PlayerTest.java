@@ -138,6 +138,9 @@ public class PlayerTest {
 	@Test
 	public void shouldDetermineTwoPair() {
 		sut = new Player();
+
+		Player.Score actual = sut.getScore();
+		assertNotEquals(Player.Score.TWO_PAIR, actual);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -147,7 +150,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard2);
 		sut.dealCard(mockCard2);
 		
-		Player.Score actual = sut.getScore();
+		actual = sut.getScore();
 		Player.Score expected = Player.Score.TWO_PAIR;
 		
 		assertEquals(expected, actual);
