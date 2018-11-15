@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player {
 	
@@ -25,6 +26,17 @@ public class Player {
 	}
 	
 	public Score getScore() {
-		return Score.PAIR;
+		int values[] = new int[13];
+		for(Card c : hand) {
+			int valueIndex = c.getDenomination().ordinal();
+			values[valueIndex] ++;
+		}
+		Arrays.sort(values);
+
+		if(values[12] == 2) {
+			return Score.PAIR;
+		}
+		return null;
 	}
+	
 }

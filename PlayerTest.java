@@ -89,11 +89,15 @@ public class PlayerTest {
 		when(mockCard.getDenomination()).thenReturn(Card.Denomination.ACE);
 		when(mockCard.getSuit()).thenReturn(Card.Suit.SPADES);
 		
+		Player.Score actual = sut.getScore();
+		Player.Score expected = Player.Score.PAIR;
+		
+		assertNotEquals(expected, actual);
+		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
 		
-		Player.Score actual = sut.getScore();
-		Player.Score expected = Player.Score.PAIR;
+		actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
