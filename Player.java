@@ -7,4 +7,8 @@ public class Player {
 	public Iterable<Card> showHand() {
 		return hand;
 	}
+	
+	public int getSize() {
+		return 0;
+	}
 }
