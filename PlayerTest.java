@@ -156,6 +156,29 @@ public class PlayerTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldDetermineStraight() {
+		sut = new Player();
+		
+		Card mockCard1 = mockAoS();
+		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
+		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard5);
+		
+		Player.Score expected = Player.Score.STRAIGHT;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+		
+	}
+	
 	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
