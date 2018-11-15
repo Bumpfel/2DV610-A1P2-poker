@@ -135,10 +135,37 @@ public class PlayerTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldDetermineTwoPair() {
+		sut = new Player();
+		
+		Card mockCard1 = mockAoS();
+		Card mockCard2 = mock7oH();
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard2);
+		
+		Player.Score actual = sut.getScore();
+		Player.Score expected = Player.Score.TWO_PAIR;
+		
+		assertEquals(expected, actual);
+	}
+	
+	
 	private Card mockAoS() {
+		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
+	}
+	
+	private Card mock7oH() {
+		return mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS);
+	}
+	
+	private Card mockCard(Card.Denomination denomination, Card.Suit suit) {
 		Card mock = mock(Card.class);
-		when(mock.getDenomination()).thenReturn(Card.Denomination.ACE);
-		when(mock.getSuit()).thenReturn(Card.Suit.SPADES);
+		when(mock.getDenomination()).thenReturn(denomination);
+		when(mock.getSuit()).thenReturn(suit);
 		
 		return mock;
 	}
