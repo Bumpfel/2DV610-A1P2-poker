@@ -14,6 +14,7 @@ public class Player {
 	}
 	
 	public void dealCard(Card c ) {
+		hand.add(c);
 		size ++;
 	}
 }
