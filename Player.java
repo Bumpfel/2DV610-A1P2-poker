@@ -5,7 +5,7 @@ public class Player {
 	
 	private ArrayList<Card> hand = new ArrayList<>();
 	
-	public enum Score { PAIR };
+	public enum Score { HIGH_CARD, PAIR };
 	
 	public Iterable<Card> showHand() {
 		return hand;
@@ -36,7 +36,7 @@ public class Player {
 		if(values[12] == 2) {
 			return Score.PAIR;
 		}
-		return null;
+		return Score.HIGH_CARD;
 	}
 	
 }
