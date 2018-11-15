@@ -17,4 +17,8 @@ public class Player {
 			hand.add(c);
 		//Don't want to be forced to handle exceptions every time I call dealCard(). A muted error is fine
 	}
+	
+	public void clearHand() {
+		hand.clear();
+	}
 }
