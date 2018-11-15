@@ -116,6 +116,22 @@ public class PlayerTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldDetermineThreeOfAKind() {
+		sut = new Player();
+		
+		Card mockCard = mockAoS();
+		
+		sut.dealCard(mockCard);
+		sut.dealCard(mockCard);
+		sut.dealCard(mockCard);
+		
+		Player.Score expected = Player.Score.THREE_OF_A_KIND;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+	}
+	
 	private Card mockAoS() {
 		Card mock = mock(Card.class);
 		when(mock.getDenomination()).thenReturn(Card.Denomination.ACE);
