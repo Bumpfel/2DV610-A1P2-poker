@@ -36,7 +36,10 @@ public class Player {
 		if(values[12] == 2) {
 			return Score.PAIR;
 		}
-		return Score.HIGH_CARD;
+		else if(values[12] == 1)
+			return Score.HIGH_CARD;
+		else
+			return null;
 	}
 	
 }

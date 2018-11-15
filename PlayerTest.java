@@ -103,13 +103,15 @@ public class PlayerTest {
 	@Test
 	public void shouldDetermineHighCard() {
 		sut = new Player();
-		
-		Card mockCard = mockAoS();
-		
-		sut.dealCard(mockCard);
 
 		Player.Score actual = sut.getScore();
+		assertNotEquals(Player.Score.HIGH_CARD, actual);
+		
+		Card mockCard = mockAoS();
+		sut.dealCard(mockCard);
+
 		Player.Score expected = Player.Score.HIGH_CARD;
+		actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
