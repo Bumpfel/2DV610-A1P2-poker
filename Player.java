@@ -33,13 +33,15 @@ public class Player {
 		}
 		Arrays.sort(values);
 
+		if(values[12] == 3)
+			return Score.THREE_OF_A_KIND;
 		if(values[12] == 2) {
 			return Score.PAIR;
 		}
 		else if(values[12] == 1)
 			return Score.HIGH_CARD;
 		else
-			return Score.THREE_OF_A_KIND;
+			return null;
 	}
 	
 }

@@ -121,13 +121,16 @@ public class PlayerTest {
 		sut = new Player();
 		
 		Card mockCard = mockAoS();
+
+		Player.Score actual = sut.getScore();
+		assertNotEquals(Player.Score.THREE_OF_A_KIND, actual);
 		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
 		
 		Player.Score expected = Player.Score.THREE_OF_A_KIND;
-		Player.Score actual = sut.getScore();
+		actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
