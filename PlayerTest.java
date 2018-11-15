@@ -36,4 +36,21 @@ public class PlayerTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void dealCardShouldAddCardToHand() {
+		sut = new Player();
+		Card mockCard = mock(Card.class);
+		
+		sut.dealCard(mockCard);
+		
+		int actualCards = 0;
+		Iterable<Card> hand = sut.showHand();
+		for(Card c : hand) {
+			actualCards ++;
+		}
+		int expectedCards = 1;
+		
+		assertEquals(expectedCards, actualCards);
+	}
 }
