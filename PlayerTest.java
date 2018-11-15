@@ -80,4 +80,21 @@ public class PlayerTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void shouldDeterminePair() {
+		sut = new Player();
+		
+		Card mockCard = mock(Card.class);
+		when(mockCard.getDenomination()).thenReturn(Card.Denomination.ACE);
+		when(mockCard.getSuit()).thenReturn(Card.Suit.SPADES);
+		
+		sut.dealCard(mockCard);
+		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
+		
+		Player.Score actual = sut.getScore();
+		Player.Score expected = Player.Score.PAIR;
+		
+		assertEquals(expected, actual);
+	}
 }
