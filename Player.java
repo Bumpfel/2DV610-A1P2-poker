@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
 public class Player {
-		
-	public Iterable showHand() {
-		return new ArrayList<>();
+	
+	private ArrayList<Card> hand = new ArrayList<>();
+	
+	public Iterable<Card> showHand() {
+		return hand;
 	}
 }
