@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 	
+	private int size = 0;
 	private ArrayList<Card> hand = new ArrayList<>();
 	
 	public Iterable<Card> showHand() {
@@ -9,6 +10,10 @@ public class Player {
 	}
 	
 	public int getSize() {
-		return 0;
+		return size;
+	}
+	
+	public void dealCard(Card c ) {
+		size ++;
 	}
 }
