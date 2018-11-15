@@ -85,9 +85,7 @@ public class PlayerTest {
 	public void shouldDeterminePair() {
 		sut = new Player();
 		
-		Card mockCard = mock(Card.class);
-		when(mockCard.getDenomination()).thenReturn(Card.Denomination.ACE);
-		when(mockCard.getSuit()).thenReturn(Card.Suit.SPADES);
+		Card mockCard = mockAoS();
 		
 		Player.Score actual = sut.getScore();
 		Player.Score expected = Player.Score.PAIR;
@@ -101,4 +99,27 @@ public class PlayerTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void shouldDetermineHighCard() {
+		sut = new Player();
+		
+		Card mockCard = mockAoS();
+		
+		sut.dealCard(mockCard);
+
+		Player.Score actual = sut.getScore();
+		Player.Score expected = Player.Score.HIGH_CARD;
+		
+		assertEquals(expected, actual);
+	}
+	
+	private Card mockAoS() {
+		Card mock = mock(Card.class);
+		when(mock.getDenomination()).thenReturn(Card.Denomination.ACE);
+		when(mock.getSuit()).thenReturn(Card.Suit.SPADES);
+		
+		return mock;
+	}
+	
 }
