@@ -28,23 +28,38 @@ public class Player {
 	public Score getScore() {
 		int values[] = new int[13];
 		for(Card c : hand) {
-			int valueIndex = c.getDenomination().ordinal();
-			values[valueIndex] ++;
+			int value = c.getDenomination().ordinal();
+			values[value] ++;
 		}
-		Arrays.sort(values);
+		int[] sortedValues = Arrays.copyOf(values, values.length);
+		Arrays.sort(sortedValues);
 
-		if(values[8] == 1)
+		
+		if(isStraight(values))
 			return Score.STRAIGHT;
-		if(values[12] == 3)
+		else if(sortedValues[12] == 3)
 			return Score.THREE_OF_A_KIND;
-		else if(values[12] == 2 && values[11] == 2)
+		else if(sortedValues[12] == 2 && sortedValues[11] == 2)
 			return Score.TWO_PAIR;
-		else if(values[12] == 2)
+		else if(sortedValues[12] == 2)
 			return Score.PAIR;
-		else if(values[12] == 1)
+		else if(sortedValues[12] == 1)
 			return Score.HIGH_CARD;
 		else
 			return null;
+	}
+	
+	private boolean isStraight(int[] arr) {
+		for(int i = 0; i < arr.length; i ++) {
+			if(arr[i] == 1) {
+				for(int j = 1; j < 5; j ++) {
+					if(arr[i + j] != 1)
+						return false;
+				}
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
