@@ -5,7 +5,7 @@ public class Player {
 	
 	private ArrayList<Card> hand = new ArrayList<>();
 	
-	public enum Score { HIGH_CARD, PAIR, TWO_PAIR, THREE_OF_A_KIND, STRAIGHT };
+	public enum Score { HIGH_CARD, PAIR, TWO_PAIR, THREE_OF_A_KIND, STRAIGHT, FLUSH };
 	
 	public Iterable<Card> showHand() {
 		return hand;
@@ -33,8 +33,14 @@ public class Player {
 		}
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
-
 		
+		for(int i = 0; i < hand.size(); i ++) {
+			Card.Suit firstCardSuit = hand.get(0).getSuit();
+			if(hand.get(i).getSuit() != firstCardSuit)
+				break;
+			else if(i == 4)
+				return Score.FLUSH;
+		}
 		if(isStraight(values))
 			return Score.STRAIGHT;
 		else if(sortedValues[12] == 3)
@@ -61,5 +67,4 @@ public class Player {
 		}
 		return false;
 	}
-	
 }
