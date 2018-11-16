@@ -176,7 +176,28 @@ public class PlayerTest {
 		Player.Score actual = sut.getScore();
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void shouldDetermineFlush() {
+		sut = new Player();
 		
+		Card mockCard1 = mockAoS();
+		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.SPADES);
+		Card mockCard3 = mockCard(Card.Denomination.JACK, Card.Suit.SPADES);
+		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.SPADES);
+		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.SPADES);
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard5);
+		
+		Player.Score expected = Player.Score.FLUSH;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
 	}
 	
 	
