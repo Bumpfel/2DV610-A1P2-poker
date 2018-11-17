@@ -228,6 +228,25 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void shouldDetermineFourOfAKind() {
+		sut = new Player();
+		
+		Card mockCard1 = mockAoS();
+		Card mockCard2 = mock7oH();
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		
+		Player.Score expected = Player.Score.FOUR_OF_A_KIND;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
 	public void shouldReturnNullIfHandIncomplete() {
 		sut = new Player();
 		
