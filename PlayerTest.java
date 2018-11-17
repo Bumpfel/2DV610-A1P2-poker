@@ -201,6 +201,16 @@ public class PlayerTest {
 	}
 	
 	
+	@Test
+	public void shouldReturnNullIfHandDoesntHave5Cards() {
+		sut = new Player();
+		
+		sut.dealCard(mockAoS());
+		Player.Score actual = sut.getScore();
+		
+		assertNull(actual);
+	}
+	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
 	}
