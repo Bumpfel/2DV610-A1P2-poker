@@ -3,6 +3,7 @@ import java.util.Arrays;
 
 public class Player {
 	
+	public final int MAX_HAND_SIZE = 5;
 	private ArrayList<Card> hand = new ArrayList<>();
 	
 	public enum Score { HIGH_CARD, PAIR, TWO_PAIR, THREE_OF_A_KIND, STRAIGHT, FLUSH };
@@ -34,9 +35,9 @@ public class Player {
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
 		
-		if(hand.size() != 5)
+		if(hand.size() != MAX_HAND_SIZE)
 			return null;
-		if(isFlush())
+		else if(isFlush())
 			return Score.FLUSH;
 		else if(isStraight(values))
 			return Score.STRAIGHT;
@@ -52,11 +53,11 @@ public class Player {
 			return null;
 	}
 	
-	private boolean isStraight(int[] arr) {
-		for(int i = 0; i < arr.length; i ++) {
-			if(arr[i] == 1) {
-				for(int j = 1; j < 5; j ++) {
-					if(arr[i + j] != 1)
+	private boolean isStraight(int[] values) {
+		for(int i = 0; i < values.length; i ++) {
+			if(values[i] == 1) {
+				for(int j = 1; j < hand.size(); j ++) {
+					if(values[i + j] != 1)
 						return false;
 				}
 				return true;
@@ -70,9 +71,7 @@ public class Player {
 			Card.Suit firstCardSuit = hand.get(0).getSuit();
 			if(hand.get(i).getSuit() != firstCardSuit)
 				return false;
-			else if(i == 4)
-				return true;
 		}
-		return false;
+		return true;
 	}
 }
