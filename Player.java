@@ -34,14 +34,9 @@ public class Player {
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
 		
-		for(int i = 0; i < hand.size(); i ++) {
-			Card.Suit firstCardSuit = hand.get(0).getSuit();
-			if(hand.get(i).getSuit() != firstCardSuit)
-				break;
-			else if(i == 4)
-				return Score.FLUSH;
-		}
-		if(isStraight(values))
+		if(isFlush())
+			return Score.FLUSH;
+		else if(isStraight(values))
 			return Score.STRAIGHT;
 		else if(sortedValues[12] == 3)
 			return Score.THREE_OF_A_KIND;
@@ -64,6 +59,17 @@ public class Player {
 				}
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	private boolean isFlush() {
+		for(int i = 0; i < hand.size(); i ++) {
+			Card.Suit firstCardSuit = hand.get(0).getSuit();
+			if(hand.get(i).getSuit() != firstCardSuit)
+				return false;
+			else if(i == 4)
+				return true;
 		}
 		return false;
 	}
