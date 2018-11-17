@@ -221,6 +221,24 @@ public class PlayerTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldDetermineFullHouse() {
+		sut = new Player();
+		
+		Card mockCard1 = mockAoS();
+		Card mockCard2 = mock7oH();
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard2);
+		
+		Player.Score expected = Player.Score.FULL_HOUSE;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+	}
 	
 	@Test
 	public void shouldReturnNullIfHandIncomplete() {
