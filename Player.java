@@ -37,6 +37,8 @@ public class Player {
 		
 		if(hand.size() != MAX_HAND_SIZE)
 			return null;
+		else if(sortedValues[12] == 4)
+			return Score.FOUR_OF_A_KIND;
 		else if(sortedValues[12] == 3 && sortedValues[11] == 2)
 			return Score.FULL_HOUSE;
 		else if(isFlush())
