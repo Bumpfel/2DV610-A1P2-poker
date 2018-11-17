@@ -38,7 +38,7 @@ public class Player {
 		if(hand.size() != MAX_HAND_SIZE)
 			return null;
 		else if(sortedValues[12] == 3 && sortedValues[11] == 2)
-			return Player.Score.FULL_HOUSE;
+			return Score.FULL_HOUSE;
 		else if(isFlush())
 			return Score.FLUSH;
 		else if(isStraight(values))

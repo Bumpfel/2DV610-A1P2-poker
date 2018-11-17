@@ -90,18 +90,14 @@ public class PlayerTest {
 		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
 		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
-		Player.Score actual = sut.getScore();
-		Player.Score expected = Player.Score.PAIR;
-		
-		assertNotEquals(expected, actual);
-		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
 		sut.dealCard(mockCard3);
 		sut.dealCard(mockCard4);
 		sut.dealCard(mockCard5);
 		
-		actual = sut.getScore();
+		Player.Score expected = Player.Score.PAIR;
+		Player.Score actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
@@ -110,9 +106,6 @@ public class PlayerTest {
 	public void shouldDetermineHighCard() {
 		sut = new Player();
 
-		Player.Score actual = sut.getScore();
-		assertNotEquals(Player.Score.HIGH_CARD, actual);
-		
 		Card mockCard = mockAoS();
 		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
 		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
@@ -126,7 +119,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard5);
 
 		Player.Score expected = Player.Score.HIGH_CARD;
-		actual = sut.getScore();
+		Player.Score actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
@@ -139,9 +132,6 @@ public class PlayerTest {
 		Card mockCard4 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
 		Card mockCard5 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
 		
-		Player.Score actual = sut.getScore();
-		assertNotEquals(Player.Score.THREE_OF_A_KIND, actual);
-		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
@@ -149,7 +139,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard5);
 		
 		Player.Score expected = Player.Score.THREE_OF_A_KIND;
-		actual = sut.getScore();
+		Player.Score actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
@@ -157,9 +147,6 @@ public class PlayerTest {
 	@Test
 	public void shouldDetermineTwoPair() {
 		sut = new Player();
-
-		Player.Score actual = sut.getScore();
-		assertNotEquals(Player.Score.TWO_PAIR, actual);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -171,7 +158,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard2);
 		sut.dealCard(mockCard5);
 		
-		actual = sut.getScore();
+		Player.Score actual = sut.getScore();
 		Player.Score expected = Player.Score.TWO_PAIR;
 		
 		assertEquals(expected, actual);
