@@ -34,6 +34,8 @@ public class Player {
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
 		
+		if(hand.size() != 5)
+			return null;
 		if(isFlush())
 			return Score.FLUSH;
 		else if(isStraight(values))

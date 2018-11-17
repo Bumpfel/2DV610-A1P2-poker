@@ -86,6 +86,9 @@ public class PlayerTest {
 		sut = new Player();
 		
 		Card mockCard = mockAoS();
+		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
 		Player.Score actual = sut.getScore();
 		Player.Score expected = Player.Score.PAIR;
@@ -94,6 +97,9 @@ public class PlayerTest {
 		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard5);
 		
 		actual = sut.getScore();
 		
@@ -108,7 +114,16 @@ public class PlayerTest {
 		assertNotEquals(Player.Score.HIGH_CARD, actual);
 		
 		Card mockCard = mockAoS();
+		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
+		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		Card mockCard4 = mockCard(Card.Denomination.JACK, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
+		
 		sut.dealCard(mockCard);
+		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard5);
 
 		Player.Score expected = Player.Score.HIGH_CARD;
 		actual = sut.getScore();
@@ -121,13 +136,17 @@ public class PlayerTest {
 		sut = new Player();
 		
 		Card mockCard = mockAoS();
-
+		Card mockCard4 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		
 		Player.Score actual = sut.getScore();
 		assertNotEquals(Player.Score.THREE_OF_A_KIND, actual);
 		
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard5);
 		
 		Player.Score expected = Player.Score.THREE_OF_A_KIND;
 		actual = sut.getScore();
@@ -144,11 +163,13 @@ public class PlayerTest {
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
+		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
 		sut.dealCard(mockCard1);
 		sut.dealCard(mockCard1);
 		sut.dealCard(mockCard2);
 		sut.dealCard(mockCard2);
+		sut.dealCard(mockCard5);
 		
 		actual = sut.getScore();
 		Player.Score expected = Player.Score.TWO_PAIR;
@@ -202,7 +223,7 @@ public class PlayerTest {
 	
 	
 	@Test
-	public void shouldReturnNullIfHandDoesntHave5Cards() {
+	public void shouldReturnNullIfHandIncomplete() {
 		sut = new Player();
 		
 		sut.dealCard(mockAoS());
