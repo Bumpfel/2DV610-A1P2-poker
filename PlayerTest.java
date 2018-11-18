@@ -86,15 +86,12 @@ public class PlayerTest {
 		sut = new Player();
 		
 		Card mockCard = mockAoS();
-		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
-		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
-		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
+		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
-		sut.dealCard(mockCard3);
-		sut.dealCard(mockCard4);
-		sut.dealCard(mockCard5);
 		
 		Player.Score expected = Player.Score.PAIR;
 		Player.Score actual = sut.getScore();
@@ -106,17 +103,12 @@ public class PlayerTest {
 	public void shouldDetermineHighCard() {
 		sut = new Player();
 
-		Card mockCard = mockAoS();
-		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
-		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
-		Card mockCard4 = mockCard(Card.Denomination.JACK, Card.Suit.CLUBS);
-		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
-		
-		sut.dealCard(mockCard);
-		sut.dealCard(mockCard2);
-		sut.dealCard(mockCard3);
-		sut.dealCard(mockCard4);
-		sut.dealCard(mockCard5);
+		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
+
 
 		Player.Score expected = Player.Score.HIGH_CARD;
 		Player.Score actual = sut.getScore();
@@ -129,14 +121,13 @@ public class PlayerTest {
 		sut = new Player();
 		
 		Card mockCard = mockAoS();
-		Card mockCard4 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
-		Card mockCard5 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
 		
+		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard);
-		sut.dealCard(mockCard4);
-		sut.dealCard(mockCard5);
+
 		
 		Player.Score expected = Player.Score.THREE_OF_A_KIND;
 		Player.Score actual = sut.getScore();
@@ -150,13 +141,12 @@ public class PlayerTest {
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
-		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		sut.dealCard(mockCard1);
 		sut.dealCard(mockCard1);
 		sut.dealCard(mockCard2);
 		sut.dealCard(mockCard2);
-		sut.dealCard(mockCard5);
 		
 		Player.Score actual = sut.getScore();
 		Player.Score expected = Player.Score.TWO_PAIR;
@@ -168,17 +158,11 @@ public class PlayerTest {
 	public void shouldDetermineStraight() {
 		sut = new Player();
 		
-		Card mockCard1 = mockAoS();
-		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
-		Card mockCard3 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
-		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
-		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
-		
-		sut.dealCard(mockCard1);
-		sut.dealCard(mockCard2);
-		sut.dealCard(mockCard3);
-		sut.dealCard(mockCard4);
-		sut.dealCard(mockCard5);
+		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
 		Player.Score expected = Player.Score.STRAIGHT;
 		Player.Score actual = sut.getScore();
@@ -190,17 +174,11 @@ public class PlayerTest {
 	public void shouldDetermineFlush() {
 		sut = new Player();
 		
-		Card mockCard1 = mockAoS();
-		Card mockCard2 = mockCard(Card.Denomination.TWO, Card.Suit.SPADES);
-		Card mockCard3 = mockCard(Card.Denomination.JACK, Card.Suit.SPADES);
-		Card mockCard4 = mockCard(Card.Denomination.FOUR, Card.Suit.SPADES);
-		Card mockCard5 = mockCard(Card.Denomination.FIVE, Card.Suit.SPADES);
-		
-		sut.dealCard(mockCard1);
-		sut.dealCard(mockCard2);
-		sut.dealCard(mockCard3);
-		sut.dealCard(mockCard4);
-		sut.dealCard(mockCard5);
+		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.SPADES);
 		
 		Player.Score expected = Player.Score.FLUSH;
 		Player.Score actual = sut.getScore();
@@ -272,4 +250,12 @@ public class PlayerTest {
 		return mock;
 	}
 	
+	private Card mockAndDealCard(Object sutObj, Card.Denomination denomination, Card.Suit suit) {
+		Card c = mockCard(denomination, suit);
+		if(sutObj instanceof Player) {
+			Player sut = (Player) sutObj;
+			sut.dealCard(c);
+		}
+		return c;
+	}
 }
