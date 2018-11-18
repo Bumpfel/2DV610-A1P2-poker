@@ -37,7 +37,7 @@ public class Player {
 		
 		if(hand.size() != MAX_HAND_SIZE)
 			return null;
-		else if(isFlush() && isStraight(values))
+		else if(isStraight(values) && isFlush())
 			return Score.STRAIGHT_FLUSH;
 		else if(sortedValues[12] == 4)
 			return Score.FOUR_OF_A_KIND;
@@ -53,10 +53,8 @@ public class Player {
 			return Score.TWO_PAIR;
 		else if(sortedValues[12] == 2)
 			return Score.PAIR;
-		else if(sortedValues[12] == 1)
-			return Score.HIGH_CARD;
 		else
-			return null;
+			return Score.HIGH_CARD;
 	}
 	
 	private boolean isStraight(int[] values) {
