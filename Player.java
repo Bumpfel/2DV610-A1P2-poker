@@ -73,8 +73,8 @@ public class Player {
 	}
 	
 	private boolean isFlush() {
+		Card.Suit firstCardSuit = hand.get(0).getSuit();
 		for(int i = 0; i < hand.size(); i ++) {
-			Card.Suit firstCardSuit = hand.get(0).getSuit();
 			if(hand.get(i).getSuit() != firstCardSuit)
 				return false;
 		}
