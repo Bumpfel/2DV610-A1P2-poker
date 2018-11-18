@@ -225,6 +225,22 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void shouldDetermineStraightFlush() {
+		sut = new Player();
+		
+		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.SIX, Card.Suit.CLUBS);
+		
+		Player.Score expected = Player.Score.STRAIGHT_FLUSH;
+		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
 	public void shouldReturnNullIfHandIncomplete() {
 		sut = new Player();
 		
