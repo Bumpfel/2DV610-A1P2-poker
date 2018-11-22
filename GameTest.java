@@ -14,7 +14,6 @@ public class GameTest {
 		setUp();
 
 		sutSpy.newGame();
-	
 		verify(mockPlayer, times(sutSpy.CARDS_TO_DEAL)).dealCard(any());
 	}
 
@@ -23,7 +22,6 @@ public class GameTest {
 		setUp();
 		
 		sutSpy.newGame();
-		
 		verify(mockDeck, times(sutSpy.CARDS_TO_DEAL)).getTopCard();
 	}
 	
@@ -32,10 +30,8 @@ public class GameTest {
 		setUp();
 		
 		sutSpy.newGame();
-		
 		verify(mockDeck).shuffle();
 	}
-	
 	
 	@Test
 	public void shouldShuffleBeforeDealingCardsOnNewGame() {
@@ -54,6 +50,5 @@ public class GameTest {
 		mockDeck = mock(Deck.class);
 		sutSpy = spy(new Game(mockPlayer, mockDeck));
 	}
-
 	
 }
