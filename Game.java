@@ -15,6 +15,7 @@ public class Game {
 			Card c = deck.getTopCard();
 			player.dealCard(c);
 		}
+		deck.reset();
 	}
 	
 }
