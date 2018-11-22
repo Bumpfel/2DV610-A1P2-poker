@@ -12,6 +12,7 @@ public class Game {
 	public void newGame() {
 		deck.reset();
 		deck.shuffle();
+		player.clearHand();
 		for(int i = 0; i < CARDS_TO_DEAL; i ++) {
 			Card c = deck.getTopCard();
 			player.dealCard(c);
