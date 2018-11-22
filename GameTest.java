@@ -5,11 +5,13 @@ import org.mockito.InOrder;
 
 public class GameTest {
 
+	private Player mockPlayer;
+	private Deck mockDeck;
+	private Game sutSpy;
+	
 	@Test
 	public void newGameShouldDealCardsToPlayer() {
-		Player mockPlayer = mock(Player.class);
-		Deck mockDeck = mock(Deck.class);
-		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		setUp();
 
 		sutSpy.newGame();
 	
@@ -18,9 +20,7 @@ public class GameTest {
 
 	@Test
 	public void shouldDealFromSameDeck() {
-		Player mockPlayer = mock(Player.class);
-		Deck mockDeck = mock(Deck.class);
-		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		setUp();
 		
 		sutSpy.newGame();
 		
@@ -29,9 +29,7 @@ public class GameTest {
 	
 	@Test
 	public void shouldShuffleDeckOnNewGame() {
-		Player mockPlayer = mock(Player.class);
-		Deck mockDeck = mock(Deck.class);
-		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		setUp();
 		
 		sutSpy.newGame();
 		
@@ -41,9 +39,7 @@ public class GameTest {
 	
 	@Test
 	public void shouldShuffleBeforeDealingCardsOnNewGame() {
-		Player mockPlayer = mock(Player.class);
-		Deck mockDeck = mock(Deck.class);
-		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		setUp();
 		
 		sutSpy.newGame();
 		
@@ -52,5 +48,12 @@ public class GameTest {
 		order.verify(mockDeck).shuffle();
 		order.verify(mockPlayer).dealCard(any());
 	}
+	
+	private void setUp() {
+		mockPlayer = mock(Player.class);
+		mockDeck = mock(Deck.class);
+		sutSpy = spy(new Game(mockPlayer, mockDeck));
+	}
+
 	
 }
