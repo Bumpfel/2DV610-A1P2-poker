@@ -4,11 +4,6 @@ public class Game {
 	private Player player;
 	private Deck deck;
 	
-	public Game(Player newPlayer) {
-		player = newPlayer;
-		deck = new Deck();
-	}
-
 	public Game(Player newPlayer, Deck newDeck) {
 		player = newPlayer;
 		deck = newDeck;
