@@ -25,4 +25,16 @@ public class GameTest {
 		
 		verify(mockDeck, times(sutSpy.CARDS_TO_DEAL)).getTopCard();
 	}
+	
+	@Test
+	public void shouldShuffleDeckOnNewGame() {
+		Player mockPlayer = mock(Player.class);
+		Deck mockDeck = mock(Deck.class);
+		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		
+		sutSpy.newGame();
+		
+		verify(mockDeck).shuffle();
+	}
+	
 }
