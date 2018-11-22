@@ -1,5 +1,6 @@
 public class Game {
 	
+	public final int CARDS_TO_DEAL = 5;
 	private Player player;
 	
 	public Game(Player newPlayer) {
@@ -8,11 +9,9 @@ public class Game {
 	
 	public void newGame() {
 		Card c = new Deck().getTopCard();
-		player.dealCard(c);
-		player.dealCard(c);
-		player.dealCard(c);
-		player.dealCard(c);
-		player.dealCard(c);
+		for(int i = 0; i < CARDS_TO_DEAL; i ++) {
+			player.dealCard(c);
+		}
 	}
 	
 }

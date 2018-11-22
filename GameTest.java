@@ -11,7 +11,7 @@ public class GameTest {
 
 		sutSpy.newGame();
 	
-		verify(mockPlayer, times(5)).dealCard(any(Card.class));
+		verify(mockPlayer, times(sutSpy.CARDS_TO_DEAL)).dealCard(any(Card.class));
 	}
 
 }
