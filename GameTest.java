@@ -54,6 +54,16 @@ public class GameTest {
 		verify(mockDeck).reset();
 	}
 	
+	@Test
+	public void shouldResetDeckBeforeShufflingOnNewGame() {
+		setUp();
+		
+		sutSpy.newGame();
+		
+		InOrder order = inOrder(mockDeck);
+		order.verify(mockDeck).reset();
+		order.verify(mockDeck).shuffle();
+	}
 	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
