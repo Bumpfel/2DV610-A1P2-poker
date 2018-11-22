@@ -65,6 +65,18 @@ public class GameTest {
 		order.verify(mockDeck).shuffle();
 	}
 	
+	@Test
+	public void shouldResetPlayerHandsBeforeDealingOnNewGame() {
+		setUp();
+		
+		sutSpy.newGame();
+		
+		verify(mockPlayer).clearHand();
+		InOrder order = inOrder(mockPlayer, mockDeck);
+		order.verify(mockPlayer).clearHand();
+		order.verify(mockDeck).getTopCard();
+	}
+	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
 		mockDeck = mock(Deck.class);
