@@ -22,6 +22,7 @@ public class GameTest {
 		setUp();
 		
 		sutSpy.newGame();
+		
 		verify(mockDeck, times(sutSpy.CARDS_TO_DEAL)).getTopCard();
 	}
 	
@@ -44,6 +45,15 @@ public class GameTest {
 		order.verify(mockDeck).shuffle();
 		order.verify(mockPlayer).dealCard(any());
 	}
+	
+	@Test
+	public void shouldResetDeckOnNewGame() {
+		setUp();
+		
+		sutSpy.newGame();
+		verify(mockDeck).reset();
+	}
+	
 	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
