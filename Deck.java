@@ -47,5 +47,7 @@ public class Deck {
 	}
 	
 	public void reset() {
+		cards.clear();
+		init();
 	}
 }
