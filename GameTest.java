@@ -1,6 +1,7 @@
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 public class GameTest {
 
@@ -35,6 +36,21 @@ public class GameTest {
 		sutSpy.newGame();
 		
 		verify(mockDeck).shuffle();
+	}
+	
+	
+	@Test
+	public void shouldShuffleBeforeDealingCardsOnNewGame() {
+		Player mockPlayer = mock(Player.class);
+		Deck mockDeck = mock(Deck.class);
+		Game sutSpy = spy(new Game(mockPlayer, mockDeck));
+		
+		sutSpy.newGame();
+		
+		InOrder order = inOrder(mockDeck, mockPlayer);
+		
+		order.verify(mockDeck).shuffle();
+		order.verify(mockPlayer).dealCard(any());
 	}
 	
 }
