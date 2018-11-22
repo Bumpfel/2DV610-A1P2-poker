@@ -30,7 +30,6 @@ public class Deck {
 		return cards.remove(0);
 	}
 	
-	
 	public boolean isEmpty() {
 		return cards.size() == 0;
 	}
@@ -45,5 +44,8 @@ public class Deck {
 	
 	public void shuffle() {
 		Collections.shuffle(cards);
+	}
+	
+	public void reset() {
 	}
 }
