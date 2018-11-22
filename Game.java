@@ -6,6 +6,10 @@ public class Game {
 	public Game(Player newPlayer) {
 		player = newPlayer;
 	}
+
+	public Game(Player newPlayer, Deck newDeck) {
+		player = newPlayer;
+	}
 	
 	public void newGame() {
 		Card c = new Deck().getTopCard();
