@@ -10,11 +10,11 @@ public class Game {
 	}
 	
 	public void newGame() {
+		deck.shuffle();
 		for(int i = 0; i < CARDS_TO_DEAL; i ++) {
 			Card c = deck.getTopCard();
 			player.dealCard(c);
 		}
-		deck.shuffle();
 	}
 	
 }
