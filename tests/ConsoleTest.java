@@ -8,10 +8,9 @@ import static org.mockito.Mockito.*;
 public class ConsoleTest {
 
 	@Test
-	public void shouldPrintWelcomeMsg() {
+	public void shouldCallPrintWelcomeMsg() {
 		Game mockGame = mock(Game.class);
-		Console sut = new Console(mockGame);
-		Console sutSpy = spy(sut);
+		Console sutSpy = spy(new Console(mockGame));
 		
 		sutSpy.play();
 		
