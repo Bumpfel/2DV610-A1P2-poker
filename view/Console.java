@@ -31,7 +31,9 @@ public class Console {
 	
 	
 	private boolean wantsToPlay(String input) {
-		return input != null;
+		if(input == null)
+			return false;
+		return input.equals("p");
 		
 		
 	}
