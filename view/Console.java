@@ -12,6 +12,7 @@ public class Console {
 	
 	public void play() {
 		printWelcomeMsg();
+		println("Press 'p' to play, 'q' to quit");
 	}
 
 	public void printWelcomeMsg() {

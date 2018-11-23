@@ -28,7 +28,7 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldPrintInstructions() {
+	public void shouldPrintInstructionsOnPlay() {
 		Game mockGame = mock(Game.class);
 		Console sutSpy = spy(new Console(mockGame));
 		
