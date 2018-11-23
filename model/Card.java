@@ -1,3 +1,5 @@
+package model;
+
 public class Card {
 
 	private Denomination denomination;
@@ -23,10 +25,9 @@ public class Card {
 	public boolean equals(Object obj) {
 		if(obj instanceof Card) {
 			Card card2 = (Card) obj;
-			return denomination == card2.getDenomination() && suit == card2.getSuit();
+			if(denomination == card2.getDenomination() && suit == card2.getSuit())
+				return true;
 		}
-		else
-			return false;
+		return false;
 	}
-
 }

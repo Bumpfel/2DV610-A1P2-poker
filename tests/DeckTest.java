@@ -1,3 +1,6 @@
+package tests;
+
+import model.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -131,4 +134,17 @@ public class DeckTest {
 		assertNotEquals(list1, list2); // Not 100% water tight, but extremely unlikely to fail. 1 in 52 factorial, I believe
 	}
 
+	
+	@Test
+	public void shouldBeAbleToResetDeck() {
+		Deck sut = new Deck();
+		
+		sut.getTopCard();
+		sut.reset();
+		
+		int expected = 52;
+		int actual = sut.size();
+		
+		assertEquals(expected, actual);
+	}
 }

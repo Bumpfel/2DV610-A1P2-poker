@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,7 +11,7 @@ public class Deck {
 		init();
 	}
 	
-	void init() {
+	public void init() {
 		for(Card.Suit suit : Card.Suit.values()) {
 			for(Card.Denomination denomination : Card.Denomination.values()) {
 				Card c = createCard(denomination, suit);
@@ -18,7 +20,7 @@ public class Deck {
 		}
 	}
 	
-	Card createCard(Card.Denomination d, Card.Suit s) {
+	public Card createCard(Card.Denomination d, Card.Suit s) {
 		return new Card(d, s);
 	}
 	
@@ -29,7 +31,6 @@ public class Deck {
 	public Card getTopCard() {
 		return cards.remove(0);
 	}
-	
 	
 	public boolean isEmpty() {
 		return cards.size() == 0;
@@ -45,5 +46,10 @@ public class Deck {
 	
 	public void shuffle() {
 		Collections.shuffle(cards);
+	}
+	
+	public void reset() {
+		cards.clear();
+		init();
 	}
 }
