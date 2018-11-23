@@ -34,7 +34,7 @@ public class ConsoleTest {
 		
 		sutSpy.play();
 
-		verify(sutSpy).println("Press 'p' to play, 'q' to quit");
+		verify(sutSpy).println(sutSpy.INSTRUCTIONS);
 	}
 
 }

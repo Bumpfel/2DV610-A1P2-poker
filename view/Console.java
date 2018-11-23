@@ -5,6 +5,7 @@ import model.*;
 public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
+	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
 
 	public Console(Game game) {
 		
@@ -12,9 +13,9 @@ public class Console {
 	
 	public void play() {
 		printWelcomeMsg();
-		println("Press 'p' to play, 'q' to quit");
+		println(INSTRUCTIONS);
 	}
-
+	
 	public void printWelcomeMsg() {
 		println(WELCOME_MSG);
 	}
