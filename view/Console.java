@@ -1,3 +1,7 @@
+package view;
+
+import model.*;
+
 public class Console {
 
 	public Console(Game game) {

@@ -1,3 +1,6 @@
+package tests;
+
+import model.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import org.junit.Test;

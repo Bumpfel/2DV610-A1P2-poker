@@ -1,3 +1,6 @@
+package tests;
+
+import model.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -46,6 +49,7 @@ public class PlayerTest {
 		
 		int actualCards = 0;
 		Iterable<Card> hand = sut.showHand();
+		
 		for(Card c : hand) {
 			actualCards ++;
 		}

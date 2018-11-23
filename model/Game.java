@@ -1,3 +1,5 @@
+package model;
+
 public class Game {
 	
 	public final int CARDS_TO_DEAL = 5;
