@@ -34,7 +34,17 @@ public class ConsoleTest {
 		setUp();
 		verify(cwMock, atLeastOnce()).getInput();
 	}
+	
+	@Test
+	public void shouldStartGameIfPIsPressed() {
+		setUp();
+		when(cwMock.getInput()).thenReturn("p");
 		
+		sutSpy.play();
+		
+		verify(mockGame).newGame();
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
