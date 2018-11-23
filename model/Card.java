@@ -30,4 +30,13 @@ public class Card {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		String denom = denomination.toString();
+		String str = denom.substring(0, 1) + denom.substring(1).toLowerCase();
+		str += " of " + suit.toString().toLowerCase();
+		
+		return str;
+	}
 }
