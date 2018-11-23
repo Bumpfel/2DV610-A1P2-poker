@@ -7,6 +7,7 @@ public class Player {
 	
 	public final int MAX_HAND_SIZE = 5;
 	private ArrayList<Card> hand = new ArrayList<>();
+	private String name;
 	
 	public enum Score { HIGH_CARD, PAIR, TWO_PAIR, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH };
 	
@@ -14,11 +15,11 @@ public class Player {
 	}
 	
 	public Player(String newName) {
-		
+		name = newName;
 	}
 	
 	public String getName() {
-		return null;
+		return name;
 	}
 	
 	public Iterable<Card> showHand() {
