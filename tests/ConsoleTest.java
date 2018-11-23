@@ -7,34 +7,32 @@ import static org.mockito.Mockito.*;
 
 public class ConsoleTest {
 
+	private Game mockGame;
+	private Console sutSpy;
+	
 	@Test
 	public void shouldCallPrintWelcomeMsg() {
-		Game mockGame = mock(Game.class);
-		Console sutSpy = spy(new Console(mockGame));
-		
-		sutSpy.play();
-		
+		setUp();
 		verify(sutSpy).printWelcomeMsg();
 	}
 	
 	@Test
 	public void printWelcomeMsgShouldCall_println_WithMsgArg() {
-		Game mockGame = mock(Game.class);
-		Console sutSpy = spy(new Console(mockGame));
-		
-		sutSpy.play();
-
+		setUp();
 		verify(sutSpy).println(sutSpy.WELCOME_MSG);
 	}
 	
 	@Test
 	public void shouldPrintInstructionsOnPlay() {
-		Game mockGame = mock(Game.class);
-		Console sutSpy = spy(new Console(mockGame));
-		
-		sutSpy.play();
-
+		setUp();
 		verify(sutSpy).println(sutSpy.INSTRUCTIONS);
 	}
 
+	
+	private void setUp() {
+		mockGame = mock(Game.class);
+		sutSpy = spy(new Console(mockGame));
+		
+		sutSpy.play();
+	}
 }
