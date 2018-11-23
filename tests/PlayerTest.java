@@ -8,16 +8,18 @@ import org.junit.Test;
 
 public class PlayerTest {
 	
+	private String name = "";
+	
 	@Test
 	public void showHandShouldReturnIterable() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		assertTrue(sut.getHand() instanceof Iterable);
 	}
 	
 	@Test
 	public void shouldBeAbleToGetSizeOfHand() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		int actual = sut.getSize();
 		int expected = 0;
@@ -27,7 +29,7 @@ public class PlayerTest {
 
 	@Test
 	public void receivingACardShouldIncrementHandSize() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		Card mockCard = mock(Card.class);
 		
 		sut.dealCard(mockCard); // I name this dealCard since I figure I'll make a Game class that calls this method, and it wouldn't make sense semantically to call player.receiveCard()
@@ -40,7 +42,7 @@ public class PlayerTest {
 	
 	@Test
 	public void dealCardShouldAddCardToHand() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		Card mockCard = mock(Card.class);
 		
 		sut.dealCard(mockCard);
@@ -58,7 +60,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldNotBeAbleToDealNullObject() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		sut.dealCard(null);
 		int expected = 0;
@@ -69,7 +71,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldBeAbleToClearHand() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mock(Card.class);
 		
@@ -85,7 +87,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDeterminePair() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mockAoS();
 		
@@ -103,8 +105,8 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineHighCard() {
-		Player sut = new Player();
-
+		Player sut = new Player(name);
+		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
@@ -120,7 +122,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineThreeOfAKind() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mockAoS();
 		
@@ -139,7 +141,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineTwoPair() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -158,7 +160,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineStraight() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
@@ -174,7 +176,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFlush() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.SPADES);
@@ -190,7 +192,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFullHouse() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -209,7 +211,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFourOfAKind() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -228,7 +230,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineStraightFlush() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
@@ -244,7 +246,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldReturnNullIfHandIncomplete() {
-		Player sut = new Player();
+		Player sut = new Player(name);
 		
 		sut.dealCard(mockAoS());
 		Player.Score actual = sut.getScore();
