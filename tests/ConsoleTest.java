@@ -20,13 +20,13 @@ public class ConsoleTest {
 	@Test
 	public void printWelcomeMsgShouldCall_println_WithMsgArg() {
 		setUp();
-		verify(sutSpy).println(sutSpy.WELCOME_MSG);
+		verify(cwMock).println(sutSpy.WELCOME_MSG);
 	}
 	
 	@Test
 	public void shouldPrintInstructionsOnPlay() {
 		setUp();
-		verify(sutSpy).println(sutSpy.INSTRUCTIONS);
+		verify(cwMock).println(sutSpy.INSTRUCTIONS);
 	}
 
 	@Test

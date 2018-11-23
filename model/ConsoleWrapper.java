@@ -11,4 +11,8 @@ public class ConsoleWrapper {
 			return input;
 		}
 	}
+	
+	public void println(String msg) {
+		System.out.println(msg);
+	}
 }

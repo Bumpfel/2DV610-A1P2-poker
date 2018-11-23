@@ -15,16 +15,12 @@ public class Console {
 	
 	public void play() {
 		printWelcomeMsg();
-		println(INSTRUCTIONS);
+		cw.println(INSTRUCTIONS);
 		cw.getInput();
 	}
 	
 	public void printWelcomeMsg() {
-		println(WELCOME_MSG);
-	}
-	
-	public void println(String msg) {
-		System.out.println(msg);
+		cw.println(WELCOME_MSG);
 	}
 	
 }
