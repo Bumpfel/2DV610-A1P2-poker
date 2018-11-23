@@ -6,8 +6,9 @@ public class Program {
 		Player player = new Player();
 		Deck deck = new Deck();
 		Game game = new Game(player, deck);
+		ConsoleWrapper cw = new ConsoleWrapper();
 		
-		Console view = new Console(game);
+		Console view = new Console(game, cw);
 		view.play();
 	}
 }
