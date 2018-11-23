@@ -28,10 +28,9 @@ public class Player {
 	}
 	
 	public void dealCard(Card c) {
-		if(c != null)
-			hand.add(c);
-		else
+		if(c == null)
 			throw new IllegalArgumentException();
+		hand.add(c);
 	}
 	
 	public void clearHand() {
