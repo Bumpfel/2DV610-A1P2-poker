@@ -38,4 +38,18 @@ public class CardTest {
 		assertFalse(sut.equals(sut3));
 	}
 	
+	@Test
+	public void shouldReturnProperToString() {
+		Card sut = new Card(Card.Denomination.ACE, Card.Suit.SPADES);
+		Card sut2 = new Card(Card.Denomination.SEVEN, Card.Suit.HEARTS);
+		
+		String expected = "Ace of spades";
+		String actual = sut.toString();
+		assertEquals(expected, actual);
+		
+		expected = "Seven of hearts";
+		actual = sut2.toString();
+		assertEquals(expected, actual);
+		
+	}
 }
