@@ -26,5 +26,15 @@ public class ConsoleTest {
 
 		verify(sutSpy).println(sutSpy.WELCOME_MSG);
 	}
+	
+	@Test
+	public void shouldPrintInstructions() {
+		Game mockGame = mock(Game.class);
+		Console sutSpy = spy(new Console(mockGame));
+		
+		sutSpy.play();
+
+		verify(sutSpy).println("Press 'p' to play, 'q' to quit");
+	}
 
 }
