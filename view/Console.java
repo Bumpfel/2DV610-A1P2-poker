@@ -20,7 +20,7 @@ public class Console {
 		cw.println(INSTRUCTIONS);
 		String input = cw.getInput();
 		
-		if(input != null) {
+		if(wantsToPlay(input)) {
 			game.newGame();
 		}
 	}
@@ -29,4 +29,10 @@ public class Console {
 		cw.println(WELCOME_MSG);
 	}
 	
+	
+	private boolean wantsToPlay(String input) {
+		return input != null;
+		
+		
+	}
 }
