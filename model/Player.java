@@ -22,7 +22,7 @@ public class Player {
 		return name;
 	}
 	
-	public Iterable<Card> showHand() {
+	public Iterable<Card> getHand() {
 		return hand;
 	}
 	
