@@ -24,7 +24,7 @@ public class ConsoleTest {
 		
 		sutSpy.play();
 
-		verify(sutSpy).println("Welcome to Poker");
+		verify(sutSpy).println(sutSpy.WELCOME_MSG);
 	}
 
 }
