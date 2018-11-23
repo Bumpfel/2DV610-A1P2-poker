@@ -9,6 +9,7 @@ public class Console {
 	}
 	
 	public void play() {
+		printWelcomeMsg();
 	}
 
 	
