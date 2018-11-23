@@ -6,9 +6,8 @@ public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
-
-	public Console(Game game) {
-		
+	
+	public Console(Game game, ConsoleWrapper newCW) {
 	}
 	
 	public void play() {

@@ -9,6 +9,7 @@ public class ConsoleTest {
 
 	private Game mockGame;
 	private Console sutSpy;
+	private ConsoleWrapper cwMock;
 	
 	@Test
 	public void shouldCallPrintWelcomeMsg() {
@@ -28,10 +29,17 @@ public class ConsoleTest {
 		verify(sutSpy).println(sutSpy.INSTRUCTIONS);
 	}
 
-	
+	@Test
+	public void shouldWaitForInputOnLoad() {
+		setUp();
+		verify(cwMock, atLeastOnce()).getInput();
+	}
+		
 	private void setUp() {
 		mockGame = mock(Game.class);
-		sutSpy = spy(new Console(mockGame));
+		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
+		cwMock = mock(ConsoleWrapper.class); 
+		sutSpy = spy(new Console(mockGame, cwMock));
 		
 		sutSpy.play();
 	}
