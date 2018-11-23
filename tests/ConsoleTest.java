@@ -39,7 +39,6 @@ public class ConsoleTest {
 	public void shouldStartGameIfPIsPressed() {
 		setUp();
 		when(cwMock.getInput()).thenReturn("p");
-		
 		sutSpy.play();
 		
 		verify(mockGame).newGame();
@@ -48,9 +47,7 @@ public class ConsoleTest {
 	@Test
 	public void shouldNotCallNewGameIfQIsPressed() {
 		setUp();
-		
 		when(cwMock.getInput()).thenReturn("q");
-		
 		sutSpy.play();
 		
 		verify(mockGame, never()).newGame();
