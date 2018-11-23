@@ -21,4 +21,11 @@ public class Game {
 		}
 	}
 	
+	public String presentScore(Player player) {
+		String score = player.getScore().toString();
+		String str = score.substring(0, 1) + score.substring(1).toLowerCase();
+		String ret = str.replace('_', ' ');
+		return ret;
+	}
+
 }
