@@ -10,4 +10,8 @@ public class Console {
 	
 	public void play() {
 	}
+
+	
+	public void printWelcomeMsg() {
+	}
 }
