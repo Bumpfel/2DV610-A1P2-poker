@@ -13,9 +13,11 @@ public class Console {
 	}
 
 	public void printWelcomeMsg() {
+		println("Welcome to Poker");
 	}
 	
 	public void println(String msg) {
+		System.out.println(msg);
 	}
 	
 }
