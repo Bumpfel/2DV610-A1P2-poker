@@ -1,6 +1,7 @@
 package tests;
 
 import model.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import org.junit.Test;
@@ -78,6 +79,21 @@ public class GameTest {
 		InOrder order = inOrder(mockPlayer, mockDeck);
 		order.verify(mockPlayer).clearHand();
 		order.verify(mockDeck).getTopCard();
+	}
+	
+	@Test
+	public void shouldPresentScore() {
+		setUp();
+		
+		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
+		String expected = "Two pair";
+		String actual = sutSpy.presentScore(mockPlayer);
+		assertEquals(expected, actual);
+
+		when(mockPlayer.getScore()).thenReturn(Player.Score.FOUR_OF_A_KIND);
+		expected = "Four of a kind";
+		actual = sutSpy.presentScore(mockPlayer);
+		assertEquals(expected, actual);	
 	}
 	
 	private void setUp() {
