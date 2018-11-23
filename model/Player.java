@@ -30,7 +30,8 @@ public class Player {
 	public void dealCard(Card c) {
 		if(c != null)
 			hand.add(c);
-		//Don't want to be forced to handle exceptions every time I call dealCard(). A muted error is fine
+		else
+			throw new IllegalArgumentException();
 	}
 	
 	public void clearHand() {
