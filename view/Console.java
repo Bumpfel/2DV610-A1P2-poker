@@ -12,7 +12,10 @@ public class Console {
 		printWelcomeMsg();
 	}
 
-	
 	public void printWelcomeMsg() {
 	}
+	
+	public void println(String msg) {
+	}
+	
 }

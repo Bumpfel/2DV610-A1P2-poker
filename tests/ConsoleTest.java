@@ -16,4 +16,15 @@ public class ConsoleTest {
 		
 		verify(sutSpy).printWelcomeMsg();
 	}
+	
+	@Test
+	public void printWelcomeMsgShouldCall_println_WithMsgArg() {
+		Game mockGame = mock(Game.class);
+		Console sutSpy = spy(new Console(mockGame));
+		
+		sutSpy.play();
+
+		verify(sutSpy).println("Welcome to Poker");
+	}
+
 }
