@@ -58,15 +58,11 @@ public class PlayerTest {
 		assertEquals(expectedCards, actualCards);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotBeAbleToDealNullObject() {
 		Player sut = new Player(name);
 		
 		sut.dealCard(null);
-		int expected = 0;
-		int actual = sut.getSize();
-		
-		assertEquals(expected, actual);
 	}
 	
 	@Test
