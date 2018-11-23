@@ -254,6 +254,23 @@ public class PlayerTest {
 		assertNull(actual);
 	}
 	
+	@Test
+	public void shouldGetPlayerName() {
+		String name = "Johnny";
+		sut = new Player(name);
+	
+		String expected = name;
+		String actual = sut.getName();
+		assertEquals(expected, actual);
+
+		name = "Susie";
+		sut = new Player(name);
+		
+		expected = name;
+		actual = sut.getName();
+		assertEquals(expected, actual);
+	}
+	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
 	}
