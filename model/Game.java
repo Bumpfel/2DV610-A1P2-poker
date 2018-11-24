@@ -29,7 +29,11 @@ public class Game {
 	}
 	
 	public String presentHand(Player player) {
-		return null;
+		StringBuilder str = new StringBuilder();
+		for(Card c : player.getHand()) {
+			str.append(c.toString() + "\n");
+		}
+		return str.toString();
 	}
 
 }
