@@ -104,35 +104,24 @@ public class GameTest {
 	public void shouldPresentHand() {
 		setUp();
 				
-		Card mockCard1 = mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
-		Card mockCard2 = mockCard(Card.Denomination.ACE, Card.Suit.HEARTS);
-		Card mockCard3 = mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES);
-		Card mockCard4 = mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS);
-		Card mockCard5 = mockCard(Card.Denomination.KING, Card.Suit.CLUBS);
 		ArrayList<Card> cards = new ArrayList<>();
-		cards.add(mockCard1);
-		cards.add(mockCard2);
-		cards.add(mockCard3);
-		cards.add(mockCard4);
-		cards.add(mockCard5);
+
+		cards.add(mockCard(Card.Denomination.ACE, Card.Suit.SPADES));
+		cards.add(mockCard(Card.Denomination.ACE, Card.Suit.HEARTS));
+		cards.add(mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES));
+		cards.add(mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS));
+		cards.add(mockCard(Card.Denomination.KING, Card.Suit.CLUBS));
 
 		String[] playerCards = { "Ace of spades", "Ace of hearts", "Seven of spades", "Seven of hearts", "King of clubs"};
-		when(mockCard1.toString()).thenReturn(playerCards[0]);
-		when(mockCard2.toString()).thenReturn(playerCards[1]);
-		when(mockCard3.toString()).thenReturn(playerCards[2]);
-		when(mockCard4.toString()).thenReturn(playerCards[3]);
-		when(mockCard5.toString()).thenReturn(playerCards[4]);
+		StringBuilder strB = new StringBuilder();
+		for(int i = 0; i < cards.size(); i ++) {
+			when(cards.get(i).toString()).thenReturn(playerCards[i]);
+			strB.append(cards.get(i) + "\n");
+		}
 		
 		when(mockPlayer.getHand()).thenReturn(cards);
-		
 		String actual = sutSpy.presentHand(mockPlayer);
-		String expected =
-				"Ace of spades\n" +
-				"Ace of hearts\n" +
-				"Seven of spades\n" +
-				"Seven of hearts\n" +
-				"King of clubs\n" +
-				"";
+		String expected = strB.toString();
 		
 		assertEquals(expected, actual);
 	}
