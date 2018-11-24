@@ -3,13 +3,11 @@ package model;
 import java.util.Scanner;
 
 public class ConsoleWrapper {
-	
+	Scanner in = new Scanner(System.in);
 	// Found no way of testing this method, so I will just implement it at GREEN
 	public String getInput() {
-		try(Scanner in = new Scanner(System.in)) {
-			String input = in.nextLine();
-			return input;
-		}
+		String input = in.nextLine();
+		return input;
 	}
 	
 	public void println(String msg) {
