@@ -35,5 +35,9 @@ public class Game {
 		}
 		return str.toString();
 	}
+	
+	public Player getWinner() {
+		return null;
+	}
 
 }

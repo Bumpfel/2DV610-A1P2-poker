@@ -1,7 +1,7 @@
 package tests;
 
 import model.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -125,6 +125,12 @@ public class GameTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldReturnAPlayer() {
+		setUp();
+				
+		assertTrue(sutSpy.getWinner() instanceof Player);
+	}
 	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
