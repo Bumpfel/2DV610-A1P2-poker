@@ -27,5 +27,9 @@ public class Game {
 		String ret = str.replace('_', ' ');
 		return ret;
 	}
+	
+	public String presentHand(Player player) {
+		return null;
+	}
 
 }
