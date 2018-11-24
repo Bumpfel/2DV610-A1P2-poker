@@ -7,19 +7,19 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 public class PlayerTest {
-
-	Player sut;
+	
+	private String name = "";
 	
 	@Test
 	public void showHandShouldReturnIterable() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
-		assertTrue(sut.showHand() instanceof Iterable);
+		assertTrue(sut.getHand() instanceof Iterable);
 	}
 	
 	@Test
 	public void shouldBeAbleToGetSizeOfHand() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		int actual = sut.getSize();
 		int expected = 0;
@@ -29,7 +29,7 @@ public class PlayerTest {
 
 	@Test
 	public void receivingACardShouldIncrementHandSize() {
-		sut = new Player();
+		Player sut = new Player(name);
 		Card mockCard = mock(Card.class);
 		
 		sut.dealCard(mockCard); // I name this dealCard since I figure I'll make a Game class that calls this method, and it wouldn't make sense semantically to call player.receiveCard()
@@ -42,13 +42,13 @@ public class PlayerTest {
 	
 	@Test
 	public void dealCardShouldAddCardToHand() {
-		sut = new Player();
+		Player sut = new Player(name);
 		Card mockCard = mock(Card.class);
 		
 		sut.dealCard(mockCard);
 		
 		int actualCards = 0;
-		Iterable<Card> hand = sut.showHand();
+		Iterable<Card> hand = sut.getHand();
 		
 		for(Card c : hand) {
 			actualCards ++;
@@ -58,20 +58,16 @@ public class PlayerTest {
 		assertEquals(expectedCards, actualCards);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotBeAbleToDealNullObject() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		sut.dealCard(null);
-		int expected = 0;
-		int actual = sut.getSize();
-		
-		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void shouldBeAbleToClearHand() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mock(Card.class);
 		
@@ -87,7 +83,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDeterminePair() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mockAoS();
 		
@@ -105,8 +101,8 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineHighCard() {
-		sut = new Player();
-
+		Player sut = new Player(name);
+		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
@@ -122,7 +118,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineThreeOfAKind() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard = mockAoS();
 		
@@ -141,7 +137,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineTwoPair() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -160,7 +156,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineStraight() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
@@ -176,7 +172,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFlush() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.SPADES);
@@ -192,7 +188,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFullHouse() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -211,7 +207,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineFourOfAKind() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		Card mockCard1 = mockAoS();
 		Card mockCard2 = mock7oH();
@@ -230,7 +226,7 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldDetermineStraightFlush() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
@@ -246,12 +242,29 @@ public class PlayerTest {
 	
 	@Test
 	public void shouldReturnNullIfHandIncomplete() {
-		sut = new Player();
+		Player sut = new Player(name);
 		
 		sut.dealCard(mockAoS());
 		Player.Score actual = sut.getScore();
 		
 		assertNull(actual);
+	}
+	
+	@Test
+	public void shouldGetPlayerName() {
+		String name = "Johnny";
+		Player sut = new Player(name);
+	
+		String expected = name;
+		String actual = sut.getName();
+		assertEquals(expected, actual);
+
+		name = "Susie";
+		sut = new Player(name);
+		
+		expected = name;
+		actual = sut.getName();
+		assertEquals(expected, actual);
 	}
 	
 	private Card mockAoS() {

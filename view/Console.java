@@ -3,16 +3,39 @@ package view;
 import model.*;
 
 public class Console {
+	
+	public final String WELCOME_MSG = "Welcome to Poker";
+	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
 
-	public Console(Game game) {
-		
+	private Game game;
+	private ConsoleWrapper cw;
+	
+	public Console(Game newGame, ConsoleWrapper newCW) {
+		game = newGame;
+		cw = newCW;
 	}
 	
 	public void play() {
 		printWelcomeMsg();
+		cw.println(INSTRUCTIONS);
+		String input = cw.getInput();
+	
+		while(wantsToPlay(input)) {
+			game.newGame();
+			input = cw.getInput();
+		}
 	}
-
 	
 	public void printWelcomeMsg() {
+		cw.println(WELCOME_MSG);
+	}
+	
+	
+	private boolean wantsToPlay(String input) {
+		if(input == null)
+			return false;
+		return input.equals("p");
+		
+		
 	}
 }
