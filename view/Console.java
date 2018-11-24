@@ -19,9 +19,10 @@ public class Console {
 		printWelcomeMsg();
 		cw.println(INSTRUCTIONS);
 		String input = cw.getInput();
-		
-		if(wantsToPlay(input)) {
+	
+		while(wantsToPlay(input)) {
 			game.newGame();
+			input = cw.getInput();
 		}
 	}
 	

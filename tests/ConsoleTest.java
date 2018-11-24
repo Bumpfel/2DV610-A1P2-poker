@@ -38,7 +38,7 @@ public class ConsoleTest {
 	@Test
 	public void shouldStartGameIfPIsPressed() {
 		setUp();
-		when(cwMock.getInput()).thenReturn("p");
+		when(cwMock.getInput()).thenReturn("p", "");
 		sutSpy.play();
 		
 		verify(mockGame).newGame();
