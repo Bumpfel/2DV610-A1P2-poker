@@ -105,7 +105,6 @@ public class GameTest {
 		setUp();
 				
 		ArrayList<Card> cards = new ArrayList<>();
-
 		cards.add(mockCard(Card.Denomination.ACE, Card.Suit.SPADES));
 		cards.add(mockCard(Card.Denomination.ACE, Card.Suit.HEARTS));
 		cards.add(mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES));
@@ -113,15 +112,15 @@ public class GameTest {
 		cards.add(mockCard(Card.Denomination.KING, Card.Suit.CLUBS));
 
 		String[] playerCards = { "Ace of spades", "Ace of hearts", "Seven of spades", "Seven of hearts", "King of clubs"};
-		StringBuilder strB = new StringBuilder();
+		StringBuilder expStr = new StringBuilder();
 		for(int i = 0; i < cards.size(); i ++) {
 			when(cards.get(i).toString()).thenReturn(playerCards[i]);
-			strB.append(cards.get(i) + "\n");
+			expStr.append(cards.get(i) + "\n");
 		}
 		
 		when(mockPlayer.getHand()).thenReturn(cards);
 		String actual = sutSpy.presentHand(mockPlayer);
-		String expected = strB.toString();
+		String expected = expStr.toString();
 		
 		assertEquals(expected, actual);
 	}
