@@ -37,7 +37,7 @@ public class Game {
 	}
 	
 	public Player getWinner() {
-		return null;
+		return player;
 	}
 
 }
