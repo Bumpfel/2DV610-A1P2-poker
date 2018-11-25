@@ -85,22 +85,6 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldPresentScore() {
-		setUp();
-		
-		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
-		String expected = "Two pair";
-		String actual = sutSpy.presentScore(mockPlayer);
-		assertEquals(expected, actual);
-
-		when(mockPlayer.getScore()).thenReturn(Player.Score.FOUR_OF_A_KIND);
-		expected = "Four of a kind";
-		actual = sutSpy.presentScore(mockPlayer);
-		assertEquals(expected, actual);	
-	}
-	
-	
-	@Test
 	public void shouldPresentHand() {
 		setUp();
 				

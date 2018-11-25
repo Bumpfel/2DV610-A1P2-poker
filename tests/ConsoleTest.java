@@ -3,6 +3,8 @@ package tests;
 import model.*;
 import view.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class ConsoleTest {
@@ -60,6 +62,22 @@ public class ConsoleTest {
 		when(cwMock.getInput()).thenReturn("p", "p", "");
 		sutSpy.play();
 		verify(mockGame, times(2)).newGame();
+	}
+	
+	@Test
+	public void shouldPresentScore() {
+		setUp();
+		Player mockPlayer = mock(Player.class);
+		
+		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
+		String expected = "Two pair";
+		String actual = sutSpy.presentScore(mockPlayer);
+		assertEquals(expected, actual);
+
+		when(mockPlayer.getScore()).thenReturn(Player.Score.FOUR_OF_A_KIND);
+		expected = "Four of a kind";
+		actual = sutSpy.presentScore(mockPlayer);
+		assertEquals(expected, actual);	
 	}
 	
 	private void setUp() {
