@@ -3,6 +3,7 @@ package tests;
 import model.*;
 import view.*;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -105,6 +106,18 @@ public class ConsoleTest {
 		String expected = expStr.toString();
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void gameShouldCallGetWinnerAfterNewGame() {
+		setUp();
+		
+		when(cwMock.getInput()).thenReturn("p", "");
+		sutSpy.play();
+		
+		InOrder order = inOrder(mockGame);
+		order.verify(mockGame).newGame();
+		order.verify(mockGame).getWinner();
 	}
 	
 	private void setUp() {
