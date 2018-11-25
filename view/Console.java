@@ -43,4 +43,12 @@ public class Console {
 		String ret = str.replace('_', ' ');
 		return ret;
 	}
+	
+	public String presentHand(Player player) {
+		StringBuilder str = new StringBuilder();
+		for(Card c : player.getHand()) {
+			str.append(c.toString() + "\n");
+		}
+		return str.toString();
+	}
 }

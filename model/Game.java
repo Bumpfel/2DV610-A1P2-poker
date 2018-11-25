@@ -20,15 +20,6 @@ public class Game {
 			player.dealCard(c);
 		}
 	}
-
-	
-	public String presentHand(Player player) {
-		StringBuilder str = new StringBuilder();
-		for(Card c : player.getHand()) {
-			str.append(c.toString() + "\n");
-		}
-		return str.toString();
-	}
 	
 	public Player getWinner() {
 		return player;
