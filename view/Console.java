@@ -22,8 +22,10 @@ public class Console {
 	
 		while(wantsToPlay(input)) {
 			game.newGame();
+			
 			input = cw.getInput();
 		}
+		game.getWinner();
 	}
 	
 	public void printWelcomeMsg() {
