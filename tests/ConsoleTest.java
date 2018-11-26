@@ -188,6 +188,18 @@ public class ConsoleTest {
 		verify(cwMock, times(sutSpy.CLEAR_SPACES)).println("");
 	}
 	
+	@Test
+	public void runGameShouldFirstClearScreenAndPrintInstructions() {
+		setUp();
+		sutSpy.runGame();
+		
+		InOrder order = inOrder(sutSpy, cwMock, mockGame);
+		order.verify(sutSpy).clearScreen();
+		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
+		order.verify(mockGame).newGame();
+		
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
