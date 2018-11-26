@@ -160,6 +160,25 @@ public class ConsoleTest {
 		verify(cwMock).println(sutSpy.presentScore(mockPlayer));
 	}
 	
+	@Test
+	public void shouldPresentWinningHandOnRunGame() {
+		setUp();
+		
+		ArrayList<Card> hand = new ArrayList<>();
+		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.SPADES));
+		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.HEARTS));
+		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES));
+		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS));
+		hand.add(mockCard(Card.Denomination.KING, Card.Suit.CLUBS));
+		
+		when(mockGame.getWinner()).thenReturn(mockPlayer);
+		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
+		when(mockPlayer.getHand()).thenReturn(hand);
+		sutSpy.runGame();
+		
+		verify(cwMock).println(sutSpy.presentHand(mockGame.getWinner()));
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
