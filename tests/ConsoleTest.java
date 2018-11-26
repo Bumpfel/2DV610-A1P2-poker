@@ -179,6 +179,15 @@ public class ConsoleTest {
 		verify(cwMock).println(sutSpy.presentHand(mockGame.getWinner()));
 	}
 	
+	@Test
+	public void shouldClearScreen() {
+		setUp();
+		
+		sutSpy.clearScreen();
+		
+		verify(cwMock, atLeast(10)).println("");
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
