@@ -20,24 +20,28 @@ public class ConsoleTest {
 	@Test
 	public void shouldCallPrintWelcomeMsg() {
 		setUp();
+		sutSpy.play();
 		verify(sutSpy).printWelcomeMsg();
 	}
 	
 	@Test
 	public void printWelcomeMsgShouldCall_println_WithMsgArg() {
 		setUp();
+		sutSpy.play();
 		verify(cwMock).println(sutSpy.WELCOME_MSG);
 	}
 	
 	@Test
 	public void shouldPrintInstructionsOnPlay() {
 		setUp();
+		sutSpy.play();
 		verify(cwMock).println(sutSpy.INSTRUCTIONS);
 	}
 
 	@Test
 	public void shouldWaitForInputOnLoad() {
 		setUp();
+		sutSpy.play();
 		verify(cwMock, atLeastOnce()).getInput();
 	}
 	
@@ -126,8 +130,6 @@ public class ConsoleTest {
 		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
 		cwMock = mock(ConsoleWrapper.class); 
 		sutSpy = spy(new Console(mockGame, cwMock));
-		
-		sutSpy.play();
 	}
 	
 	private Card mockCard(Card.Denomination denomination, Card.Suit suit) {
