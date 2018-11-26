@@ -16,8 +16,7 @@ public class Game {
 		deck.shuffle();
 		player.clearHand();
 		for(int i = 0; i < CARDS_TO_DEAL; i ++) {
-			Card c = deck.getTopCard();
-			player.dealCard(c);
+			dealFromDeck(player);
 		}
 	}
 	
@@ -27,9 +26,13 @@ public class Game {
 	
 	public void fillUpHand(Player player) {
 		for(int i = player.getSize(); i < CARDS_TO_DEAL; i ++) {
-			Card c = deck.getTopCard();
-			player.dealCard(c);
+			dealFromDeck(player);
 		}
+	}
+	
+	private void dealFromDeck(Player player) {
+		Card c = deck.getTopCard();
+		player.dealCard(c);
 	}
 
 }
