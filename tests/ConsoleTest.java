@@ -149,6 +149,17 @@ public class ConsoleTest {
 		assertNull(hand);
 	}
 	
+	@Test
+	public void shouldPresentScoreOnRunGame() {
+		setUp();
+		
+		when(mockGame.getWinner()).thenReturn(mockPlayer);
+		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
+		sutSpy.runGame();
+		
+		verify(cwMock).println(sutSpy.presentScore(mockPlayer));
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
