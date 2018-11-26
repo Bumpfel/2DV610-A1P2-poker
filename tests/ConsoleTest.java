@@ -5,7 +5,7 @@ import view.*;
 import org.junit.Test;
 import org.mockito.InOrder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -129,6 +129,15 @@ public class ConsoleTest {
 		
 		sutSpy.runGame();
 		verify(mockGame, atLeastOnce()).getWinner();
+	}
+
+	@Test
+	public void shouldReturnNullScoreOnNullArg() {
+		setUp();
+		
+		sutSpy.runGame();
+		String score = sutSpy.presentScore(null);
+		assertNull(score);
 	}
 	
 	private void setUp() {
