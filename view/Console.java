@@ -56,6 +56,9 @@ public class Console {
 	}
 	
 	public void runGame() {
+		clearScreen();
+		cw.println(INSTRUCTIONS);
+		System.out.println();
 		game.newGame();
 		Player winner = game.getWinner();
 		
