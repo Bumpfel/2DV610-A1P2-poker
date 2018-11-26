@@ -185,7 +185,7 @@ public class ConsoleTest {
 		
 		sutSpy.clearScreen();
 		
-		verify(cwMock, atLeast(10)).println("");
+		verify(cwMock, atLeast(sutSpy.CLEAR_SPACES)).println("");
 	}
 	
 	private void setUp() {

@@ -6,7 +6,8 @@ public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
-
+	public final int CLEAR_SPACES = 25;
+	
 	private Game game;
 	private ConsoleWrapper cw;
 	
@@ -63,7 +64,7 @@ public class Console {
 	}
 	
 	public void clearScreen() {
-		for(int i = 0; i < 10; i ++) {
+		for(int i = 0; i < CLEAR_SPACES; i ++) {
 			cw.println("");
 		}
 	}
