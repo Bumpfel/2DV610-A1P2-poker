@@ -59,5 +59,6 @@ public class Console {
 		Player winner = game.getWinner();
 		
 		cw.println(presentScore(winner));
+		cw.println(presentHand(winner));
 	}
 }
