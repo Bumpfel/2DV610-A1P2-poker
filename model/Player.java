@@ -23,6 +23,10 @@ public class Player {
 		return hand;
 	}
 	
+	public void removeCard(int n) {
+		hand.remove(n);
+	}
+	
 	public int getSize() {
 		return hand.size();
 	}
