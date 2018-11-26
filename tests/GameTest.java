@@ -88,6 +88,21 @@ public class GameTest {
 				
 		assertTrue(sutSpy.getWinner() instanceof Player);
 	}
+
+	
+	@Test
+	public void shouldFillUpHandOfPlayer() {
+		setUp();
+		
+		when(mockPlayer.getSize()).thenReturn(3);
+		sutSpy.fillUpHand(mockPlayer);
+		verify(mockPlayer, times(2)).dealCard(any());
+
+		mockPlayer = mock(Player.class);
+		when(mockPlayer.getSize()).thenReturn(1);
+		sutSpy.fillUpHand(mockPlayer);
+		verify(mockPlayer, times(4)).dealCard(any());
+	}
 	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
