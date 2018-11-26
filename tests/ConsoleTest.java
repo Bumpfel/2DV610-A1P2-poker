@@ -150,7 +150,7 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldPresentScoreOnRunGame() {
+	public void shouldPresentWinningScoreOnRunGame() {
 		setUp();
 		
 		when(mockGame.getWinner()).thenReturn(mockPlayer);
