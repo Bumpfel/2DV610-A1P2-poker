@@ -18,13 +18,9 @@ public class Console {
 	public void play() {
 		printWelcomeMsg();
 		cw.println(INSTRUCTIONS);
-		String input = cw.getInput();
-	
-		while(wantsToPlay(input)) {
-			game.newGame();
-			game.getWinner();
-			
-			input = cw.getInput();
+		
+		while(wantsToPlay(cw.getInput())) {
+			runGame();
 		}
 	}
 	
@@ -52,5 +48,10 @@ public class Console {
 			str.append(c.toString() + "\n");
 		}
 		return str.toString();
+	}
+	
+	public void runGame() {
+		game.newGame();
+		game.getWinner();
 	}
 }

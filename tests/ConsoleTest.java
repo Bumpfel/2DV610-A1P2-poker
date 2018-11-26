@@ -116,8 +116,7 @@ public class ConsoleTest {
 	public void gameShouldCallGetWinnerAfterNewGame() {
 		setUp();
 		
-		when(cwMock.getInput()).thenReturn("p", "");
-		sutSpy.play();
+		sutSpy.runGame();
 		
 		InOrder order = inOrder(mockGame);
 		order.verify(mockGame).newGame();
@@ -128,10 +127,8 @@ public class ConsoleTest {
 	public void getWinnerShouldBeCalledEveryGame() {
 		setUp();
 		
-		when(cwMock.getInput()).thenReturn("p", "p", "");
-		sutSpy.play();
-
-		verify(mockGame, atLeast(2)).getWinner(); 
+		sutSpy.runGame();
+		verify(mockGame, atLeastOnce()).getWinner();
 	}
 	
 	private void setUp() {
