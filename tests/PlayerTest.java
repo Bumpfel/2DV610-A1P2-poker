@@ -267,6 +267,19 @@ public class PlayerTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldRemoveCardFromHand() {
+		Player sut = new Player(name);
+		
+		sut.dealCard(mockAoS());
+		sut.removeCard(0);
+		
+		int expected = 0;
+		int actual = sut.getSize();
+		
+		assertEquals(expected, actual);
+	}
+	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
 	}
