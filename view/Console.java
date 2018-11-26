@@ -45,6 +45,8 @@ public class Console {
 	}
 	
 	public String presentHand(Player player) {
+		if(player == null) 
+			return null;
 		StringBuilder str = new StringBuilder();
 		for(Card c : player.getHand()) {
 			str.append(c.toString() + "\n");
