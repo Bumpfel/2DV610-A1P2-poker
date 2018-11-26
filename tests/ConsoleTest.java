@@ -140,6 +140,15 @@ public class ConsoleTest {
 		assertNull(score);
 	}
 	
+	@Test
+	public void shouldReturnNullHandOnNullArg() {
+		setUp();
+		
+		sutSpy.runGame();
+		String hand = sutSpy.presentHand(null);
+		assertNull(hand);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
