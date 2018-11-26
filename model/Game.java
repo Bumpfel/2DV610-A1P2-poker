@@ -25,6 +25,7 @@ public class Game {
 	}
 	
 	public Player getPlayer() {
+		return player;
 	}
 	
 	public void fillUpHand(Player player) {
