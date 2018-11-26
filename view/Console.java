@@ -61,4 +61,10 @@ public class Console {
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner));
 	}
+	
+	public void clearScreen() {
+		for(int i = 0; i < 10; i ++) {
+			cw.println("");
+		}
+	}
 }
