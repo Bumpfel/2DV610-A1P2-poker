@@ -124,6 +124,16 @@ public class ConsoleTest {
 		order.verify(mockGame).getWinner();
 	}
 	
+	@Test
+	public void getWinnerShouldBeCalledEveryGame() {
+		setUp();
+		
+		when(cwMock.getInput()).thenReturn("p", "p", "");
+		sutSpy.play();
+
+		verify(mockGame, atLeast(2)).getWinner(); 
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
