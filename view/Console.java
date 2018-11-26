@@ -56,6 +56,8 @@ public class Console {
 	
 	public void runGame() {
 		game.newGame();
-		game.getWinner();
+		Player winner = game.getWinner();
+		
+		cw.println(presentScore(winner));
 	}
 }
