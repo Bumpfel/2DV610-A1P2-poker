@@ -26,7 +26,10 @@ public class Game {
 	}
 	
 	public void fillUpHand(Player player) {
-		
+		for(int i = player.getSize(); i < CARDS_TO_DEAL; i ++) {
+			Card c = deck.getTopCard();
+			player.dealCard(c);
+		}
 	}
 
 }
