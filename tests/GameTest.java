@@ -104,6 +104,16 @@ public class GameTest {
 		verify(mockPlayer, times(4)).dealCard(any());
 	}
 	
+	@Test
+	public void shouldGetPlayer() {
+		setUp();
+		
+		Player expected = mockPlayer;
+		Player actual = sutSpy.getPlayer();
+		
+		assertEquals(expected, actual);
+	}
+	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
 		mockDeck = mock(Deck.class);
