@@ -218,12 +218,26 @@ public class ConsoleTest {
 		order.verify(cwMock).getThrowCardInput();
 		order.verify(mockGame).getWinner();
 	}
+	
+	@Test
+	public void shouldLoopUntilFinished() {
+		setUp();
 		
+		when(cwMock.getThrowCardInput()).thenReturn("", "f");
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		sutSpy.runGame();
+		
+		verify(cwMock, times(2)).println(sutSpy.INSTRUCTIONS2);
+		verify(sutSpy, times(2)).presentHand(mockPlayer);
+		verify(sutSpy, atLeast(2)).clearScreen();
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
 		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
 		cwMock = mock(ConsoleWrapper.class); 
+		when(cwMock.getThrowCardInput()).thenReturn("f");
 		sutSpy = spy(new Console(mockGame, cwMock));
 	}
 	
