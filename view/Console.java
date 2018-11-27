@@ -64,6 +64,9 @@ public class Console {
 		
 		clearScreen();
 		cw.println(INSTRUCTIONS2);
+		Player player = game.getPlayer();
+		presentHand(player);
+		cw.getThrowCardInput();
 		
 		Player winner = game.getWinner();
 		cw.println(presentScore(winner));
