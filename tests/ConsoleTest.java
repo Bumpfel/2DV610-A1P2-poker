@@ -216,6 +216,18 @@ public class ConsoleTest {
 		order.verify(mockGame).getWinner();
 	}
 	
+	@Test
+	public void shouldPrintHand() {
+		setUp();
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		ArrayList<Card> tempHand = new ArrayList<>();
+		tempHand.add(mock(Card.class));
+		when(mockPlayer.getHand()).thenReturn(tempHand);
+		sutSpy.runGame();
+		
+		verify(cwMock).println(sutSpy.presentHand(mockPlayer));
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
