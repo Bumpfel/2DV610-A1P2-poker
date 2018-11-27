@@ -34,8 +34,8 @@ public class Game {
 		}
 	}
 	
-	public void throwCard(Player p, int index) {
-		p.removeCard(index);
+	public void throwCard(Player p, Card c) {
+		p.removeCard(c);
 	}
 	
 	private void dealFromDeck(Player player) {

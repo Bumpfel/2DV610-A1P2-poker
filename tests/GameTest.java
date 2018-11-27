@@ -118,8 +118,10 @@ public class GameTest {
 	public void shouldThrowCard() {
 		setUp();
 		
-		sutSpy.throwCard(mockPlayer, 0);		
-		verify(mockPlayer).removeCard(0);
+		Card mockCard = mock(Card.class);
+		
+		sutSpy.throwCard(mockPlayer, mockCard);
+		verify(mockPlayer).removeCard(mockCard);
 	}
 	
 	private void setUp() {

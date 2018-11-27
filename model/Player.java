@@ -23,8 +23,8 @@ public class Player {
 		return hand;
 	}
 	
-	public void removeCard(int n) {
-		hand.remove(n);
+	public void removeCard(Card c) {
+		hand.remove(c);
 	}
 	
 	public int getSize() {

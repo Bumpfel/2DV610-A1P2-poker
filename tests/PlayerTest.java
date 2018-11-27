@@ -271,8 +271,9 @@ public class PlayerTest {
 	public void shouldRemoveCardFromHand() {
 		Player sut = new Player(name);
 		
-		sut.dealCard(mockAoS());
-		sut.removeCard(0);
+		Card mockCard = mockAoS();
+		sut.dealCard(mockCard);
+		sut.removeCard(mockCard);
 		
 		int expected = 0;
 		int actual = sut.getSize();
