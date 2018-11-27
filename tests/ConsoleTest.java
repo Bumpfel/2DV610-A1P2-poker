@@ -212,6 +212,21 @@ public class ConsoleTest {
 		order.verify(mockGame).getWinner();
 	}
 	
+	@Test
+	public void shouldGiveOptionToThrowCardsBeforeEndingGame() {
+		setUp();
+		
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		sutSpy.runGame();
+		
+		verify(mockGame, atLeastOnce()).getPlayer();
+		
+		InOrder order = inOrder(sutSpy, cwMock, mockGame);
+		order.verify(sutSpy).presentHand(mockPlayer);
+		order.verify(cwMock).getThrowCardInput();
+		order.verify(mockGame).getWinner();
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
