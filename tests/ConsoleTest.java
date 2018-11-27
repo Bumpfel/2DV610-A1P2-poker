@@ -189,17 +189,6 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void runGameShouldFirstClearScreenAndPrintInstructions() {
-		setUp();
-		sutSpy.runGame();
-		
-		InOrder order = inOrder(sutSpy, cwMock, mockGame);
-		order.verify(sutSpy).clearScreen();
-		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
-		order.verify(mockGame).newGame();
-	}
-	
-	@Test
 	public void shouldClearScreenAndPrintNewInstructions() {
 		setUp();
 		
