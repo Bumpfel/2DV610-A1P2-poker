@@ -34,6 +34,9 @@ public class Game {
 		}
 	}
 	
+	public void throwCard(Player p, int index) {
+	}
+	
 	private void dealFromDeck(Player player) {
 		Card c = deck.getTopCard();
 		player.dealCard(c);

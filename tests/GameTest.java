@@ -114,6 +114,14 @@ public class GameTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldThrowCard() {
+		setUp();
+		
+		sutSpy.throwCard(mockPlayer, 0);		
+		verify(mockPlayer).removeCard(0);
+	}
+	
 	private void setUp() {
 		mockPlayer = mock(Player.class);
 		mockDeck = mock(Deck.class);
