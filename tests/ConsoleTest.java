@@ -206,28 +206,19 @@ public class ConsoleTest {
 		setUp();
 		
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
-		sutSpy.runGame();
-		
-		verify(mockGame, atLeastOnce()).getPlayer();
-		
-		InOrder order = inOrder(sutSpy, cwMock, mockGame);
-		order.verify(sutSpy).presentHand(mockPlayer);
-		order.verify(cwMock).getThrowCardInput();
-		order.verify(mockGame).getWinner();
-	}
-	
-	@Test
-	public void shouldPrintHand() {
-		setUp();
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		ArrayList<Card> tempHand = new ArrayList<>();
 		tempHand.add(mock(Card.class));
 		when(mockPlayer.getHand()).thenReturn(tempHand);
 		sutSpy.runGame();
 		
-		verify(cwMock).println(sutSpy.presentHand(mockPlayer));
+		verify(mockGame, atLeastOnce()).getPlayer();
+		
+		InOrder order = inOrder(sutSpy, cwMock, mockGame);
+		order.verify(cwMock).println(sutSpy.presentHand(mockPlayer));
+		order.verify(cwMock).getThrowCardInput();
+		order.verify(mockGame).getWinner();
 	}
-	
+		
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
