@@ -6,6 +6,7 @@ public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
+	public final String INSTRUCTIONS2 = "";
 	public final int CLEAR_SPACES = 25;
 	
 	private Game game;

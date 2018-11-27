@@ -197,7 +197,19 @@ public class ConsoleTest {
 		order.verify(sutSpy).clearScreen();
 		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
 		order.verify(mockGame).newGame();
+	}
+	
+	@Test
+	public void shouldClearScreenAndPrintNewInstructions() {
+		setUp();
 		
+		sutSpy.runGame();
+		
+		InOrder order = inOrder(sutSpy, cwMock, mockGame);
+		order.verify(mockGame).newGame();
+		order.verify(sutSpy).clearScreen();
+		order.verify(cwMock).println(sutSpy.INSTRUCTIONS2);
+		order.verify(mockGame).getWinner();
 	}
 	
 	private void setUp() {
