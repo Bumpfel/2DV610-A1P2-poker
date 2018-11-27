@@ -58,12 +58,14 @@ public class Console {
 	
 	public void runGame() {
 		game.newGame();
-		
-		clearScreen();
-		cw.println(INSTRUCTIONS2);
-		Player player = game.getPlayer();
-		cw.println(presentHand(player));
-		cw.getThrowCardInput();
+
+		do {
+			clearScreen();
+			cw.println(INSTRUCTIONS2);
+			Player player = game.getPlayer();
+			cw.println(presentHand(player));
+		}
+		while(!cw.getThrowCardInput().equals("f"));
 		
 		Player winner = game.getWinner();
 		cw.println(presentScore(winner));
