@@ -67,7 +67,7 @@ public class Console {
 		return ret;
 	}
 	
-	public String presentHand(Player player) {
+	public String presentHand(Player player, boolean showNumbers) {
 		if(player == null) 
 			return null;
 		StringBuilder str = new StringBuilder();
@@ -90,14 +90,14 @@ public class Console {
 		
 		Player winner = game.getWinner();
 		cw.println(presentScore(winner));
-		cw.println(presentHand(winner));
+		cw.println(presentHand(winner, false));
 	}
 	
 	public void throwCards() {
 		clearScreen();
 		cw.println(INSTRUCTIONS2);
 		Player player = game.getPlayer();
-		cw.println(presentHand(player));
+		cw.println(presentHand(player, true));
 	}
 	
 	public void clearScreen() {

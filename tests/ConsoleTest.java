@@ -106,7 +106,7 @@ public class ConsoleTest {
 		}
 		
 		when(mockPlayer.getHand()).thenReturn(cards);
-		String actual = sutSpy.presentHand(mockPlayer);
+		String actual = sutSpy.presentHand(mockPlayer, false);
 		String expected = expStr.toString();
 		
 		assertEquals(expected, actual);
@@ -145,7 +145,7 @@ public class ConsoleTest {
 		setUp();
 		
 		sutSpy.runGame();
-		String hand = sutSpy.presentHand(null);
+		String hand = sutSpy.presentHand(null, false);
 		assertNull(hand);
 	}
 	
@@ -171,7 +171,7 @@ public class ConsoleTest {
 		when(mockPlayer.getHand()).thenReturn(hand);
 		sutSpy.runGame();
 		
-		verify(cwMock).println(sutSpy.presentHand(mockGame.getWinner()));
+		verify(cwMock).println(sutSpy.presentHand(mockGame.getWinner(), false));
 	}
 	
 	@Test
@@ -209,7 +209,7 @@ public class ConsoleTest {
 		verify(mockGame, atLeastOnce()).getPlayer();
 		
 		InOrder order = inOrder(sutSpy, cwMock, mockGame);
-		order.verify(cwMock).println(sutSpy.presentHand(mockPlayer));
+		order.verify(cwMock).println(sutSpy.presentHand(mockPlayer, true));
 		order.verify(cwMock).getThrowCardInput();
 		order.verify(mockGame).getWinner();
 	}
@@ -223,7 +223,7 @@ public class ConsoleTest {
 		sutSpy.runGame();
 		
 		verify(cwMock, times(2)).println(sutSpy.INSTRUCTIONS2);
-		verify(sutSpy, times(2)).presentHand(mockPlayer);
+		verify(sutSpy, times(2)).presentHand(mockPlayer, true);
 		verify(sutSpy, atLeast(2)).clearScreen();
 	}
 	
@@ -289,6 +289,22 @@ public class ConsoleTest {
 		sutSpy.runGame();
 		
 		verify(mockGame).fillUpHand(mockPlayer);
+	}
+
+	@Test
+	public void shouldPrintNumbersBeforeCardsWhenThrowing() {
+		setUp();
+		
+//		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		Iterable<Card> hand = makeTemplateHand();
+		when(mockPlayer.getHand()).thenReturn(hand);
+		String presentedHand = sutSpy.presentHand(mockPlayer, true);
+		
+		assertTrue(presentedHand.contains("1. "));
+		assertTrue(presentedHand.contains("2. "));
+		assertTrue(presentedHand.contains("3. "));
+		assertTrue(presentedHand.contains("4. "));
+		assertTrue(presentedHand.contains("5. "));
 	}
 	
 	private void setUp() {
