@@ -37,7 +37,15 @@ public class Console {
 			Player player = game.getPlayer();
 			int inputInt = Integer.parseInt(input);
 			if(inputInt >= 1 && inputInt <= player.getHandSize()) {
-				game.throwCard(null, null);
+				int i = 1;
+				Card selectedCard = null;
+				for(Card c : player.getHand()) {
+					if(inputInt == i)
+						selectedCard = c; 
+					i ++;
+				}
+	
+				game.throwCard(player, selectedCard);
 			}
 		}
 		catch(NumberFormatException e) {
