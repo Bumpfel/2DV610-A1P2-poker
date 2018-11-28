@@ -10,6 +10,7 @@ public class Console {
 	public final String INVALID_INPUT = "Invalid input";
 	public final String GAME_OVER_MSG = "Game over. You got ";
 	public final int CLEAR_SPACES = 25;
+	public final int PAUSE_TIME = 1000;
 	
 	private Game game;
 	private ConsoleWrapper cw;
@@ -50,13 +51,13 @@ public class Console {
 			}
 			else {
 				cw.println(INVALID_INPUT);
-				cw.pause(1000);
+				cw.pause(PAUSE_TIME);
 			}
 		}
 		catch(NumberFormatException e) {
 			if(!input.equals("f")) {
 				cw.println(INVALID_INPUT);
-				cw.pause(1000);
+				cw.pause(PAUSE_TIME);
 			}
 		}
 		return !input.equals("f");

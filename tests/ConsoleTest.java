@@ -303,9 +303,9 @@ public class ConsoleTest {
 		
 		InOrder order = inOrder(cwMock);
 		order.verify(cwMock).println(sutSpy.INVALID_INPUT);
-		order.verify(cwMock).pause(1000);
+		order.verify(cwMock).pause(sutSpy.PAUSE_TIME);
 		
-		verify(cwMock, times(2)).pause(1000);
+		verify(cwMock, times(2)).pause(sutSpy.PAUSE_TIME);
 	}
 	
 	private void setUp() {
