@@ -164,12 +164,7 @@ public class ConsoleTest {
 	public void shouldPresentWinningHandOnRunGame() {
 		setUp();
 		
-		ArrayList<Card> hand = new ArrayList<>();
-		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.SPADES));
-		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.HEARTS));
-		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES));
-		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS));
-		hand.add(mockCard(Card.Denomination.KING, Card.Suit.CLUBS));
+		ArrayList<Card> hand = makeTemplateHand();
 		
 		when(mockGame.getWinner()).thenReturn(mockPlayer);
 		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
@@ -266,21 +261,12 @@ public class ConsoleTest {
 		setUp();
 		
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
-		when(mockPlayer.getHandSize()).thenReturn(3);
-		
-		ArrayList<Card> hand = new ArrayList<>();
-		Card mockCard1 = mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
-		Card mockCard2 = mockCard(Card.Denomination.ACE, Card.Suit.HEARTS);
-		Card mockCard3 = mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES);
-		hand.add(mockCard1);
-		hand.add(mockCard2);
-		hand.add(mockCard3);
+		ArrayList<Card> hand = makeTemplateHand();
 		when(mockPlayer.getHand()).thenReturn(hand);
 		
-		mockPlayer.getHand();
-		sutSpy.wantsToThrowCards("2");
+		sutSpy.wantsToThrowCards("2"); 
 		
-		verify(mockGame).throwCard(mockPlayer, mockCard2);
+		verify(mockGame).throwCard(mockPlayer, hand.get(1)); // input is one higher than arraylist index
 	}
 	
 	private void setUp() {
@@ -298,5 +284,19 @@ public class ConsoleTest {
 		when(mock.getSuit()).thenReturn(suit);
 		
 		return mock;
+	}
+	
+	private ArrayList<Card> makeTemplateHand() {
+		ArrayList<Card> hand = new ArrayList<>();
+		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.SPADES));
+		hand.add(mockCard(Card.Denomination.ACE, Card.Suit.HEARTS));
+		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES));
+		hand.add(mockCard(Card.Denomination.SEVEN, Card.Suit.HEARTS));
+		hand.add(mockCard(Card.Denomination.KING, Card.Suit.CLUBS));
+		
+		when(mockPlayer.getHandSize()).thenReturn(5);
+		
+		return hand;
+
 	}
 }
