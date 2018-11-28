@@ -21,7 +21,7 @@ public class ConsoleTest {
 	public void shouldCallPrintWelcomeMsg() {
 		setUp();
 		sutSpy.play();
-		verify(sutSpy).printWelcomeMsg();
+		verify(cwMock).println(sutSpy.WELCOME_MSG);
 	}
 	
 	@Test

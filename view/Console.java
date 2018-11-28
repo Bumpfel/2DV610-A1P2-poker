@@ -18,7 +18,7 @@ public class Console {
 	}
 	
 	public void play() {
-		printWelcomeMsg();
+		cw.println(WELCOME_MSG);
 		cw.println(INSTRUCTIONS);
 		
 		while(wantsToPlay(cw.getInput())) {
@@ -26,15 +26,14 @@ public class Console {
 		}
 	}
 	
-	public void printWelcomeMsg() {
-		cw.println(WELCOME_MSG);
-	}
-	
-	
 	private boolean wantsToPlay(String input) {
 		if(input == null)
 			return false;
 		return input.equals("p");
+	}
+	
+	private boolean wantsToThrowCards(String input) {
+		return !input.equals("f");
 	}
 	
 	public String presentScore(Player player) {
@@ -60,16 +59,20 @@ public class Console {
 		game.newGame();
 
 		do {
-			clearScreen();
-			cw.println(INSTRUCTIONS2);
-			Player player = game.getPlayer();
-			cw.println(presentHand(player));
+			throwCards();
 		}
-		while(!cw.getThrowCardInput().equals("f"));
+		while(wantsToThrowCards(cw.getThrowCardInput()));
 		
 		Player winner = game.getWinner();
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner));
+	}
+	
+	private void throwCards() {
+		clearScreen();
+		cw.println(INSTRUCTIONS2);
+		Player player = game.getPlayer();
+		cw.println(presentHand(player));
 	}
 	
 	public void clearScreen() {
