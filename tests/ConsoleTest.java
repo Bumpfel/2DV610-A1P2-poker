@@ -236,6 +236,7 @@ public class ConsoleTest {
 	public void shouldRunThrowCardWhenEnteringANumber() {
 		setUp();
 		
+		when(mockPlayer.getHandSize()).thenReturn(5);
 		when(cwMock.getThrowCardInput()).thenReturn("5", "f");
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
@@ -248,6 +249,7 @@ public class ConsoleTest {
 		// valid input - 1 to hand size
 		setUp();
 		int handSize = 5;
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		when(mockPlayer.getHandSize()).thenReturn(handSize);
 		sutSpy.wantsToThrowCards("0");
 		sutSpy.wantsToThrowCards("" + (handSize + 1));
