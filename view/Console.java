@@ -6,11 +6,12 @@ public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
-	public final String INSTRUCTIONS2 = "These are your cards dealt \nPress corresponding number to throw a card, 'f' to finish (and get new cards)";
+	public final String SWAP_INSTRUCTIONS = "These are your cards dealt. You may now swap out cards for new ones \nPress corresponding number to throw a card, 'f' to finish (and get new cards)";
 	public final String INVALID_INPUT = "Invalid input";
 	public final String GAME_OVER_MSG = "Game over. You got ";
 	public final int CLEAR_SPACES = 25;
 	public final int PAUSE_TIME = 1000;
+	public final int SWAP_ROUNDS = 2;
 	
 	private Game game;
 	private ConsoleWrapper cw;
@@ -88,21 +89,16 @@ public class Console {
 	
 	public void runGame() {
 		game.newGame();
+		Player player = game.getPlayer();
 
 		// Swap cards
-		do {
-			throwCards();
+		for(int i = 0; i < SWAP_ROUNDS; i ++) {
+			do {
+				throwCards();
+			}
+			while(wantsToThrowCards(cw.getThrowCardInput()));
+			game.fillUpHand(player);
 		}
-		while(wantsToThrowCards(cw.getThrowCardInput()));
-
-		do {
-			throwCards();
-		}
-		while(wantsToThrowCards(cw.getThrowCardInput()));
-		
-		Player player = game.getPlayer();
-		game.fillUpHand(player);
-		
 		
 		// Game over
 		Player winner = game.getWinner();
@@ -114,7 +110,7 @@ public class Console {
 	
 	public void throwCards() {
 		clearScreen();
-		cw.println(INSTRUCTIONS2);
+		cw.println(SWAP_INSTRUCTIONS);
 		Player player = game.getPlayer();
 		cw.println(presentHand(player, true));
 	}

@@ -166,7 +166,7 @@ public class ConsoleTest {
 		InOrder order = inOrder(sutSpy, cwMock, mockGame);
 		order.verify(mockGame).newGame();
 		order.verify(sutSpy).clearScreen();
-		order.verify(cwMock).println(sutSpy.INSTRUCTIONS2);
+		order.verify(cwMock).println(sutSpy.SWAP_INSTRUCTIONS);
 		order.verify(mockGame).getWinner();
 	}
 	
@@ -196,8 +196,8 @@ public class ConsoleTest {
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
-		verify(cwMock, times(3)).println(sutSpy.INSTRUCTIONS2);
-		verify(sutSpy, times(3)).presentHand(mockPlayer, true);
+		verify(cwMock, times(sutSpy.SWAP_ROUNDS + 1)).println(sutSpy.SWAP_INSTRUCTIONS);
+		verify(sutSpy, times(sutSpy.SWAP_ROUNDS + 1)).presentHand(mockPlayer, true);
 		verify(sutSpy, atLeast(2)).clearScreen();
 	}
 	
@@ -261,7 +261,7 @@ public class ConsoleTest {
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
-		verify(mockGame).fillUpHand(mockPlayer);
+		verify(mockGame, times(sutSpy.SWAP_ROUNDS)).fillUpHand(mockPlayer);
 	}
 
 	@Test

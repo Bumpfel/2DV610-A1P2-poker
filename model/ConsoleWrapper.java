@@ -6,6 +6,7 @@ public class ConsoleWrapper {
 	Scanner in = new Scanner(System.in);
 	// Found no way of testing this method, so I will just implement it at GREEN
 	public String getInput() {
+		System.out.print(": ");
 		return in.nextLine();
 	}
 	
