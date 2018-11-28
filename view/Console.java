@@ -93,6 +93,8 @@ public class Console {
 		game.fillUpHand(player);
 		
 		Player winner = game.getWinner();
+		clearScreen();
+		cw.print("Game over. You got ");
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner, false));
 	}
