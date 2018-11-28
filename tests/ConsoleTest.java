@@ -243,7 +243,21 @@ public class ConsoleTest {
 		verify(mockGame).throwCard(any(), any());
 	}
 	
-	
+	@Test
+	public void shouldOnlyAcceptValidInput() {
+		// valid input - 1 to hand size
+		setUp();
+		int handSize = 5;
+		when(mockPlayer.getHandSize()).thenReturn(handSize);
+		sutSpy.wantsToThrowCards("0");
+		sutSpy.wantsToThrowCards("" + (handSize + 1));
+		
+		verify(mockGame, never()).throwCard(any(), any());
+		
+		sutSpy.wantsToThrowCards("" + handSize);
+		sutSpy.wantsToThrowCards("1");
+		verify(mockGame, times(2)).throwCard(any(), any());
+	}
 	
 	private void setUp() {
 		mockGame = mock(Game.class);

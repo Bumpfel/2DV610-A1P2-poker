@@ -32,7 +32,7 @@ public class Console {
 		return input.equals("p");
 	}
 	
-	private boolean wantsToThrowCards(String input) {
+	public boolean wantsToThrowCards(String input) {
 		try {
 			Integer.parseInt(input);
 			game.throwCard(null, null);
