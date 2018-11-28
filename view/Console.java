@@ -47,8 +47,12 @@ public class Console {
 	
 				game.throwCard(player, selectedCard);
 			}
+			else
+				cw.println("Invalid input");
 		}
 		catch(NumberFormatException e) {
+			if(!input.equals("f"))
+				cw.println("Invalid input");
 		}
 		return !input.equals("f");
 	}
