@@ -306,6 +306,19 @@ public class ConsoleTest {
 		assertTrue(presentedHand.contains("5. "));
 	}
 	
+	@Test
+	public void shouldClearScreenAndPrintGameOverMsg() {
+		setUp();
+		
+		when(cwMock.getThrowCardInput()).thenReturn("f");
+		sutSpy.runGame();
+		
+		InOrder order = inOrder(sutSpy, mockGame, cwMock);
+		order.verify(mockGame).getWinner();
+		order.verify(sutSpy).clearScreen();
+		order.verify(cwMock).print("Game over. You got ");
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);

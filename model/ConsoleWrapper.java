@@ -13,6 +13,10 @@ public class ConsoleWrapper {
 		System.out.println(msg);
 	}
 	
+	public void print(String msg) {
+		System.out.print(msg);
+	}
+	
 	//made this for testing verification purposes
 	public String getThrowCardInput() {
 		return getInput();
