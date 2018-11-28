@@ -94,6 +94,11 @@ public class Console {
 			throwCards();
 		}
 		while(wantsToThrowCards(cw.getThrowCardInput()));
+
+		do {
+			throwCards();
+		}
+		while(wantsToThrowCards(cw.getThrowCardInput()));
 		
 		Player player = game.getPlayer();
 		game.fillUpHand(player);

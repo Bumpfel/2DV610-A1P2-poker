@@ -196,8 +196,8 @@ public class ConsoleTest {
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
-		verify(cwMock, times(2)).println(sutSpy.INSTRUCTIONS2);
-		verify(sutSpy, times(2)).presentHand(mockPlayer, true);
+		verify(cwMock, times(3)).println(sutSpy.INSTRUCTIONS2);
+		verify(sutSpy, times(3)).presentHand(mockPlayer, true);
 		verify(sutSpy, atLeast(2)).clearScreen();
 	}
 	
