@@ -48,12 +48,16 @@ public class Console {
 				}
 				game.throwCard(player, selectedCard);
 			}
-			else
+			else {
 				cw.println(INVALID_INPUT);
+				cw.pause(1000);
+			}
 		}
 		catch(NumberFormatException e) {
-			if(!input.equals("f"))
+			if(!input.equals("f")) {
 				cw.println(INVALID_INPUT);
+				cw.pause(1000);
+			}
 		}
 		return !input.equals("f");
 	}
