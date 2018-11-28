@@ -9,6 +9,8 @@ public class Console {
 	public final String SWAP_INSTRUCTIONS = "These are your cards dealt. You may now swap out cards for new ones \nPress corresponding number to throw a card, 'f' to finish (and get new cards)";
 	public final String INVALID_INPUT = "Invalid input";
 	public final String GAME_OVER_MSG = "Game over. You got ";
+	public final String SWAP_MSG1 = "You have ";
+	public final String SWAP_MSG2 = " swap round(s) left";
 	public final int CLEAR_SPACES = 25;
 	public final int PAUSE_TIME = 1000;
 	public final int SWAP_ROUNDS = 2;
@@ -92,7 +94,7 @@ public class Console {
 		Player player = game.getPlayer();
 
 		// Swap cards
-		for(int i = 1; i <= SWAP_ROUNDS; i ++) {
+		for(int i = SWAP_ROUNDS; i > 0; i --) {
 			do {
 				throwCards(i);
 			}
@@ -113,7 +115,7 @@ public class Console {
 		cw.println(SWAP_INSTRUCTIONS);
 		Player player = game.getPlayer();
 		cw.println(presentHand(player, true));
-		cw.println("You have " + roundsLeft + " swap round(s) left");
+		cw.println(SWAP_MSG1 + roundsLeft + SWAP_MSG2);
 	}
 	
 	public void clearScreen() {

@@ -323,7 +323,7 @@ public class ConsoleTest {
 		sutSpy.runGame();
 		
 		for(int i = sutSpy.SWAP_ROUNDS; i > 0; i --) {
-			verify(cwMock).println("You have " + i + " swap round(s) left");
+			verify(cwMock).println(sutSpy.SWAP_MSG1 + i + sutSpy.SWAP_MSG2);
 		}
 	}
 	
