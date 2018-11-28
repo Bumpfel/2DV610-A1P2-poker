@@ -314,7 +314,7 @@ public class ConsoleTest {
 		when(cwMock.getThrowCardInput()).thenReturn("f", "f");
 		sutSpy.runGame();
 		
-		verify(sutSpy, times(sutSpy.SWAP_ROUNDS)).throwCards();
+		verify(sutSpy, times(sutSpy.SWAP_ROUNDS)).throwCards(anyInt());
 	}
 	
 	@Test

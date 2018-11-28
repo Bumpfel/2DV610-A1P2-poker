@@ -92,9 +92,9 @@ public class Console {
 		Player player = game.getPlayer();
 
 		// Swap cards
-		for(int i = 0; i < SWAP_ROUNDS; i ++) {
+		for(int i = 1; i <= SWAP_ROUNDS; i ++) {
 			do {
-				throwCards();
+				throwCards(i);
 			}
 			while(wantsToThrowCards(cw.getThrowCardInput()));
 			game.fillUpHand(player);
@@ -108,11 +108,12 @@ public class Console {
 		cw.println(presentHand(winner, false));
 	}
 	
-	public void throwCards() {
+	public void throwCards(int roundsLeft) {
 		clearScreen();
 		cw.println(SWAP_INSTRUCTIONS);
 		Player player = game.getPlayer();
 		cw.println(presentHand(player, true));
+		cw.println("You have " + roundsLeft + " swap round(s) left");
 	}
 	
 	public void clearScreen() {
