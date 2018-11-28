@@ -6,7 +6,7 @@ public class Console {
 	
 	public final String WELCOME_MSG = "Welcome to Poker";
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
-	public final String INSTRUCTIONS2 = "Press numbers 1-5 to throw a card, 'f' to finish (and get new cards)";
+	public final String INSTRUCTIONS2 = "These are your cards dealt \nPress corresponding number to throw a card, 'f' to finish (and get new cards)";
 	public final String INVALID_INPUT = "Invalid input";
 	public final int CLEAR_SPACES = 25;
 	

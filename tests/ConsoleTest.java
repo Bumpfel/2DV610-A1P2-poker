@@ -295,7 +295,6 @@ public class ConsoleTest {
 	public void shouldPrintNumbersBeforeCardsWhenThrowing() {
 		setUp();
 		
-//		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		Iterable<Card> hand = makeTemplateHand();
 		when(mockPlayer.getHand()).thenReturn(hand);
 		String presentedHand = sutSpy.presentHand(mockPlayer, true);
