@@ -97,17 +97,6 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void gameShouldCallGetWinnerAfterNewGame() {
-		setUp();
-		
-		sutSpy.runGame();
-		
-		InOrder order = inOrder(mockGame);
-		order.verify(mockGame).newGame();
-		order.verify(mockGame).getWinner();
-	}
-
-	@Test
 	public void shouldReturnNullScoreOnNullArg() {
 		setUp();
 		
@@ -159,7 +148,7 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldClearScreenAndPrintNewInstructions() {
+	public void shouldClearScreenAndPrintSwapInstructions() {
 		setUp();
 		sutSpy.runGame();
 		
