@@ -71,8 +71,12 @@ public class Console {
 		if(player == null) 
 			return null;
 		StringBuilder str = new StringBuilder();
+		int i = 1;
 		for(Card c : player.getHand()) {
+			if(showNumbers)
+				str.append(i + ". ");
 			str.append(c.toString() + "\n");
+			i ++;
 		}
 		return str.toString();
 	}
