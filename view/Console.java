@@ -39,7 +39,7 @@ public class Console {
 		}
 		catch(NumberFormatException e) {
 		}
-		return !input.equals("f");			
+		return !input.equals("f");
 	}
 	
 	public String presentScore(Player player) {
