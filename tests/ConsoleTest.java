@@ -309,12 +309,12 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldPresentTwoCardSwapRounds() {
+	public void shouldPresentGivenAmountOfCardSwapRounds() {
 		setUp();
 		when(cwMock.getThrowCardInput()).thenReturn("f", "f");
 		sutSpy.runGame();
 		
-		verify(sutSpy, times(2)).throwCards();
+		verify(sutSpy, times(sutSpy.SWAP_ROUNDS)).throwCards();
 	}
 	
 	private void setUp() {
