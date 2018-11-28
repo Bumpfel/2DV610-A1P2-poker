@@ -317,6 +317,18 @@ public class ConsoleTest {
 		}
 	}
 	
+	@Test
+	public void shouldPrintErrorMsgOnBadPlayInput() {
+		setUp();
+		
+		when(cwMock.getInput()).thenReturn("asd");
+		sutSpy.play();
+		
+		InOrder order = inOrder(cwMock);
+		order.verify(cwMock).println(sutSpy.INVALID_INPUT);
+		order.verify(cwMock).pause(sutSpy.PAUSE_TIME);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
