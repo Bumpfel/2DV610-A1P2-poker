@@ -317,6 +317,16 @@ public class ConsoleTest {
 		verify(sutSpy, times(sutSpy.SWAP_ROUNDS)).throwCards();
 	}
 	
+	@Test
+	public void shouldDisplaySwapRoundsLeft() {
+		setUp();
+		sutSpy.runGame();
+		
+		for(int i = sutSpy.SWAP_ROUNDS; i > 0; i --) {
+			verify(cwMock).println("You have " + i + " swap round(s) left");
+		}
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
