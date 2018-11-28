@@ -308,6 +308,15 @@ public class ConsoleTest {
 		verify(cwMock, times(2)).pause(sutSpy.PAUSE_TIME);
 	}
 	
+	@Test
+	public void shouldPresentTwoCardSwapRounds() {
+		setUp();
+		when(cwMock.getThrowCardInput()).thenReturn("f", "f");
+		sutSpy.runGame();
+		
+		verify(sutSpy, times(2)).throwCards();
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
