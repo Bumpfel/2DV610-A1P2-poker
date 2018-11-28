@@ -45,7 +45,6 @@ public class Console {
 						selectedCard = c; 
 					i ++;
 				}
-	
 				game.throwCard(player, selectedCard);
 			}
 			else
@@ -84,6 +83,7 @@ public class Console {
 	public void runGame() {
 		game.newGame();
 
+		// Swap cards
 		do {
 			throwCards();
 		}
@@ -92,6 +92,8 @@ public class Console {
 		Player player = game.getPlayer();
 		game.fillUpHand(player);
 		
+		
+		// Game over
 		Player winner = game.getWinner();
 		clearScreen();
 		cw.print("Game over. You got ");

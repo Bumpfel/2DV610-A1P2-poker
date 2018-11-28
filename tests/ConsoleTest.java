@@ -314,7 +314,7 @@ public class ConsoleTest {
 		sutSpy.runGame();
 		
 		InOrder order = inOrder(sutSpy, mockGame, cwMock);
-		order.verify(mockGame).getWinner();
+		order.verify(mockGame).fillUpHand(any());
 		order.verify(sutSpy).clearScreen();
 		order.verify(cwMock).print("Game over. You got ");
 	}
