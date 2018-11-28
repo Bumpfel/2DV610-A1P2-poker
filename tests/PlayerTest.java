@@ -21,7 +21,7 @@ public class PlayerTest {
 	public void shouldBeAbleToGetSizeOfHand() {
 		Player sut = new Player(name);
 		
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		int expected = 0;
 		assertEquals(expected, actual);
 		
@@ -35,7 +35,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard); // I name this dealCard since I figure I'll make a Game class that calls this method, and it wouldn't make sense semantically to call player.receiveCard()
 		
 		int expected = 1;
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
 	}
@@ -76,7 +76,7 @@ public class PlayerTest {
 		sut.clearHand();
 		
 		int expected = 0;
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
 	}
@@ -276,7 +276,7 @@ public class PlayerTest {
 		sut.removeCard(mockCard);
 		
 		int expected = 0;
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
 	}

@@ -29,7 +29,7 @@ public class Game {
 	}
 	
 	public void fillUpHand(Player player) {
-		for(int i = player.getSize(); i < CARDS_TO_DEAL; i ++) {
+		for(int i = player.getHandSize(); i < CARDS_TO_DEAL; i ++) {
 			dealFromDeck(player);
 		}
 	}

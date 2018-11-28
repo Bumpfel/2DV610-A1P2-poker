@@ -27,7 +27,7 @@ public class Player {
 		hand.remove(c);
 	}
 	
-	public int getSize() {
+	public int getHandSize() {
 		return hand.size();
 	}
 	
