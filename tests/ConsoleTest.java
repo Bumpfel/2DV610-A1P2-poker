@@ -292,6 +292,22 @@ public class ConsoleTest {
 		order.verify(cwMock).print(sutSpy.GAME_OVER_MSG);
 	}
 	
+	@Test
+	public void shouldPauseAfterDisplayingInvalidInputMsg() {
+		setUp();
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		when(mockPlayer.getHandSize()).thenReturn(5);
+		sutSpy.wantsToThrowCards("6");
+
+		sutSpy.wantsToThrowCards("asd");
+		
+		InOrder order = inOrder(cwMock);
+		order.verify(cwMock).println(sutSpy.INVALID_INPUT);
+		order.verify(cwMock).pause(1000);
+		
+		verify(cwMock, times(2)).pause(1000);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);

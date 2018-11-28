@@ -21,4 +21,12 @@ public class ConsoleWrapper {
 	public String getThrowCardInput() {
 		return getInput();
 	}
+	
+	public void pause(int time) {
+		try {
+			Thread.sleep(time);
+		}
+		catch(InterruptedException e) {
+		}
+	}
 }
