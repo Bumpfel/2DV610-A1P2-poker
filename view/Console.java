@@ -108,6 +108,7 @@ public class Console {
 		cw.print(GAME_OVER_MSG);
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner, false));
+		cw.println(INSTRUCTIONS);
 	}
 	
 	public void throwCards(int roundsLeft) {
