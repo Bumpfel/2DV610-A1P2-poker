@@ -232,6 +232,20 @@ public class ConsoleTest {
 		verify(sutSpy, atLeast(2)).clearScreen();
 	}
 	
+	@Test
+	public void shouldRunThrowCardWhenEnteringANumber() {
+		setUp();
+		
+		when(cwMock.getThrowCardInput()).thenReturn("5", "f");
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		when(mockPlayer.getHandSize()).thenReturn(5);
+		sutSpy.runGame();
+		
+		verify(mockGame).throwCard(any(), any());
+	}
+	
+	
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
