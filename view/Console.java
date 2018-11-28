@@ -85,6 +85,9 @@ public class Console {
 		}
 		while(wantsToThrowCards(cw.getThrowCardInput()));
 		
+		Player player = game.getPlayer();
+		game.fillUpHand(player);
+		
 		Player winner = game.getWinner();
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner));
