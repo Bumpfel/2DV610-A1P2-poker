@@ -34,8 +34,11 @@ public class Console {
 	
 	public boolean wantsToThrowCards(String input) {
 		try {
-			Integer.parseInt(input);
-			game.throwCard(null, null);
+			Player player = game.getPlayer();
+			int inputInt = Integer.parseInt(input);
+			if(inputInt >= 1 && inputInt <= player.getHandSize()) {
+				game.throwCard(null, null);
+			}
 		}
 		catch(NumberFormatException e) {
 		}
