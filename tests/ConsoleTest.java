@@ -334,6 +334,7 @@ public class ConsoleTest {
 		mockPlayer = mock(Player.class);
 		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
 		cwMock = mock(ConsoleWrapper.class); 
+		when(cwMock.getInput()).thenReturn("q");
 		when(cwMock.getThrowCardInput()).thenReturn("f");
 		sutSpy = spy(new Console(mockGame, cwMock));
 	}
