@@ -245,7 +245,7 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldOnlyAcceptValidInput() {
+	public void throwCardsShouldOnlyAcceptValidInput() {
 		// valid input - 1 to hand size
 		setUp();
 		int handSize = 5;
