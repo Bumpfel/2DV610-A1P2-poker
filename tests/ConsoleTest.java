@@ -281,6 +281,16 @@ public class ConsoleTest {
 		verify(cwMock, times(2)).println("Invalid input");
 	}
 	
+	@Test
+	public void shouldGetNewCardsWhenFinishedThrowingCards() {
+		setUp();
+		
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		sutSpy.runGame();
+		
+		verify(mockGame).fillUpHand(mockPlayer);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
