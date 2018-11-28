@@ -33,7 +33,13 @@ public class Console {
 	}
 	
 	private boolean wantsToThrowCards(String input) {
-		return !input.equals("f");
+		try {
+			Integer.parseInt(input);
+			game.throwCard(null, null);
+		}
+		catch(NumberFormatException e) {
+		}
+		return !input.equals("f");			
 	}
 	
 	public String presentScore(Player player) {
@@ -68,7 +74,7 @@ public class Console {
 		cw.println(presentHand(winner));
 	}
 	
-	private void throwCards() {
+	public void throwCards() {
 		clearScreen();
 		cw.println(INSTRUCTIONS2);
 		Player player = game.getPlayer();
