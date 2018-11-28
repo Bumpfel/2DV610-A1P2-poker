@@ -327,6 +327,19 @@ public class ConsoleTest {
 		}
 	}
 	
+	@Test
+	public void shouldDisplayInstructionsAfterGameEnd() {
+		setUp();
+		when(mockGame.getWinner()).thenReturn(mockPlayer);
+		when(mockPlayer.getScore()).thenReturn(Player.Score.PAIR);
+		
+		sutSpy.runGame();
+		
+		InOrder order = inOrder(sutSpy, cwMock);
+		order.verify(sutSpy).presentHand(mockPlayer, false);
+		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
