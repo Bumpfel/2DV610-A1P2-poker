@@ -269,6 +269,18 @@ public class ConsoleTest {
 		verify(mockGame).throwCard(mockPlayer, hand.get(1)); // input is one higher than arraylist index
 	}
 	
+	@Test
+	public void throwCardsShouldGiveErrorMsgOnInvalidInput() {
+		setUp();
+		
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		when(mockPlayer.getHandSize()).thenReturn(5);
+		sutSpy.wantsToThrowCards("6");
+		sutSpy.wantsToThrowCards("h");
+		
+		verify(cwMock, times(2)).println("Invalid input");
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
