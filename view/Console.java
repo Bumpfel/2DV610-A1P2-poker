@@ -8,6 +8,7 @@ public class Console {
 	public final String INSTRUCTIONS = "Press 'p' to play, 'q' to quit";
 	public final String INSTRUCTIONS2 = "These are your cards dealt \nPress corresponding number to throw a card, 'f' to finish (and get new cards)";
 	public final String INVALID_INPUT = "Invalid input";
+	public final String GAME_OVER_MSG = "Game over. You got ";
 	public final int CLEAR_SPACES = 25;
 	
 	private Game game;
@@ -96,7 +97,7 @@ public class Console {
 		// Game over
 		Player winner = game.getWinner();
 		clearScreen();
-		cw.print("Game over. You got ");
+		cw.print(GAME_OVER_MSG);
 		cw.println(presentScore(winner));
 		cw.println(presentHand(winner, false));
 	}

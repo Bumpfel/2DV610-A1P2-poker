@@ -25,13 +25,6 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void printWelcomeMsgShouldCall_println_WithMsgArg() {
-		setUp();
-		sutSpy.play();
-		verify(cwMock).println(sutSpy.WELCOME_MSG);
-	}
-	
-	@Test
 	public void shouldPrintInstructionsOnPlay() {
 		setUp();
 		sutSpy.play();
@@ -43,15 +36,6 @@ public class ConsoleTest {
 		setUp();
 		sutSpy.play();
 		verify(cwMock, atLeastOnce()).getInput();
-	}
-	
-	@Test
-	public void shouldStartGameIfPIsPressed() {
-		setUp();
-		when(cwMock.getInput()).thenReturn("p", "");
-		sutSpy.play();
-		
-		verify(mockGame).newGame();
 	}
 	
 	@Test
@@ -84,7 +68,7 @@ public class ConsoleTest {
 		when(mockPlayer.getScore()).thenReturn(Player.Score.FOUR_OF_A_KIND);
 		expected = "Four of a kind";
 		actual = sutSpy.presentScore(mockPlayer);
-		assertEquals(expected, actual);	
+		assertEquals(expected, actual);
 	}
 	
 	@Test
@@ -121,14 +105,6 @@ public class ConsoleTest {
 		InOrder order = inOrder(mockGame);
 		order.verify(mockGame).newGame();
 		order.verify(mockGame).getWinner();
-	}
-	
-	@Test
-	public void getWinnerShouldBeCalledEveryGame() {
-		setUp();
-		
-		sutSpy.runGame();
-		verify(mockGame, atLeastOnce()).getWinner();
 	}
 
 	@Test
@@ -177,7 +153,6 @@ public class ConsoleTest {
 	@Test
 	public void shouldClearScreen() {
 		setUp();
-		
 		sutSpy.clearScreen();
 		
 		verify(cwMock, times(sutSpy.CLEAR_SPACES)).println("");
@@ -186,7 +161,6 @@ public class ConsoleTest {
 	@Test
 	public void shouldClearScreenAndPrintNewInstructions() {
 		setUp();
-		
 		sutSpy.runGame();
 		
 		InOrder order = inOrder(sutSpy, cwMock, mockGame);
@@ -284,7 +258,6 @@ public class ConsoleTest {
 	@Test
 	public void shouldGetNewCardsWhenFinishedThrowingCards() {
 		setUp();
-		
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
@@ -316,7 +289,7 @@ public class ConsoleTest {
 		InOrder order = inOrder(sutSpy, mockGame, cwMock);
 		order.verify(mockGame).fillUpHand(any());
 		order.verify(sutSpy).clearScreen();
-		order.verify(cwMock).print("Game over. You got ");
+		order.verify(cwMock).print(sutSpy.GAME_OVER_MSG);
 	}
 	
 	private void setUp() {
