@@ -261,6 +261,28 @@ public class ConsoleTest {
 		verify(mockGame, times(2)).throwCard(any(), any());
 	}
 	
+	@Test
+	public void shouldThrowCorrectCard() {
+		setUp();
+		
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		when(mockPlayer.getHandSize()).thenReturn(3);
+		
+		ArrayList<Card> hand = new ArrayList<>();
+		Card mockCard1 = mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
+		Card mockCard2 = mockCard(Card.Denomination.ACE, Card.Suit.HEARTS);
+		Card mockCard3 = mockCard(Card.Denomination.SEVEN, Card.Suit.SPADES);
+		hand.add(mockCard1);
+		hand.add(mockCard2);
+		hand.add(mockCard3);
+		when(mockPlayer.getHand()).thenReturn(hand);
+		
+		mockPlayer.getHand();
+		sutSpy.wantsToThrowCards("2");
+		
+		verify(mockGame).throwCard(mockPlayer, mockCard2);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
