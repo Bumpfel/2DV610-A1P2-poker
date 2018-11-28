@@ -33,8 +33,10 @@ public class Console {
 	}
 	
 	private boolean wantsToPlay(String input) {
-		if(input == null)
-			return false;
+		if(!input.equals("p") && !input.equals("q")) {
+			cw.println(INVALID_INPUT);
+			cw.pause(PAUSE_TIME);
+		}
 		return input.equals("p");
 	}
 	
