@@ -163,7 +163,6 @@ public class ConsoleTest {
 	public void shouldGiveOptionToThrowCardsBeforeEndingGame() {
 		setUp();
 		
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		ArrayList<Card> tempHand = new ArrayList<>();
 		tempHand.add(mock(Card.class));
 		when(mockPlayer.getHand()).thenReturn(tempHand);
@@ -182,7 +181,6 @@ public class ConsoleTest {
 		setUp();
 		
 		when(cwMock.getThrowCardInput()).thenReturn("", "f");
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
 		verify(cwMock, times(sutSpy.SWAP_ROUNDS + 1)).println(sutSpy.SWAP_INSTRUCTIONS);
@@ -196,7 +194,6 @@ public class ConsoleTest {
 		
 		when(mockPlayer.getHandSize()).thenReturn(5);
 		when(cwMock.getThrowCardInput()).thenReturn("5", "f");
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
 		verify(mockGame).throwCard(any(), any());
@@ -207,7 +204,6 @@ public class ConsoleTest {
 		// valid input - 1 to hand size
 		setUp();
 		int handSize = 5;
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		when(mockPlayer.getHandSize()).thenReturn(handSize);
 		sutSpy.wantsToThrowCards("0");
 		sutSpy.wantsToThrowCards("" + (handSize + 1));
@@ -223,7 +219,6 @@ public class ConsoleTest {
 	public void shouldThrowCorrectCard() {
 		setUp();
 		
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		ArrayList<Card> hand = makeTemplateHand();
 		when(mockPlayer.getHand()).thenReturn(hand);
 		
@@ -236,7 +231,6 @@ public class ConsoleTest {
 	public void throwCardsShouldGiveErrorMsgOnInvalidInput() {
 		setUp();
 		
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		when(mockPlayer.getHandSize()).thenReturn(5);
 		sutSpy.wantsToThrowCards("6");
 		sutSpy.wantsToThrowCards("h");
@@ -247,7 +241,6 @@ public class ConsoleTest {
 	@Test
 	public void shouldGetNewCardsWhenFinishedThrowingCards() {
 		setUp();
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		sutSpy.runGame();
 		
 		verify(mockGame, times(sutSpy.SWAP_ROUNDS)).fillUpHand(mockPlayer);
@@ -285,7 +278,6 @@ public class ConsoleTest {
 	@Test
 	public void shouldPauseAfterDisplayingInvalidInputMsg() {
 		setUp();
-		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		when(mockPlayer.getHandSize()).thenReturn(5);
 		sutSpy.wantsToThrowCards("6");
 
@@ -335,6 +327,7 @@ public class ConsoleTest {
 		// Scanner class seems to be final, so it's not mockable. Have to use a method that returns a method call from a scanner
 		cwMock = mock(ConsoleWrapper.class); 
 		when(cwMock.getInput()).thenReturn("q");
+		when(mockGame.getPlayer()).thenReturn(mockPlayer);
 		when(cwMock.getThrowCardInput()).thenReturn("f");
 		sutSpy = spy(new Console(mockGame, cwMock));
 	}

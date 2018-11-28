@@ -33,10 +33,8 @@ public class Console {
 	}
 	
 	private boolean wantsToPlay(String input) {
-		if(!input.equals("p") && !input.equals("q")) {
-			cw.println(INVALID_INPUT);
-			cw.pause(PAUSE_TIME);
-		}
+		if(!input.equals("p") && !input.equals("q"))
+			printInvalidInputMsg();
 		return input.equals("p");
 	}
 	
@@ -54,17 +52,12 @@ public class Console {
 				}
 				game.throwCard(player, selectedCard);
 			}
-			else {
-				cw.println(INVALID_INPUT);
-				cw.pause(PAUSE_TIME);
-			}
+			else
+				printInvalidInputMsg();
 		}
 		catch(NumberFormatException e) {
-			if(!input.equals("f")) {
-				cw.println(INVALID_INPUT);
-				cw.pause(PAUSE_TIME);
-			}
-		}
+			if(!input.equals("f"))
+				printInvalidInputMsg();			}
 		return !input.equals("f");
 	}
 	
@@ -125,5 +118,10 @@ public class Console {
 		for(int i = 0; i < CLEAR_SPACES; i ++) {
 			cw.println("");
 		}
+	}
+	
+	private void printInvalidInputMsg() {
+		cw.println(INVALID_INPUT);
+		cw.pause(PAUSE_TIME);
 	}
 }
