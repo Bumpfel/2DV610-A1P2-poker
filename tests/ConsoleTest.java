@@ -280,7 +280,7 @@ public class ConsoleTest {
 	}
 	
 	@Test
-	public void shouldClearScreenAndPrintGameOverMsg() {
+	public void shouldClearScreenAndPrintGameOverMsgThenNewInstructions() {
 		setUp();
 		
 		when(cwMock.getThrowCardInput()).thenReturn("f");
@@ -290,6 +290,7 @@ public class ConsoleTest {
 		order.verify(mockGame).fillUpHand(any());
 		order.verify(sutSpy).clearScreen();
 		order.verify(cwMock).print(sutSpy.GAME_OVER_MSG);
+		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
 	}
 	
 	@Test
@@ -325,19 +326,6 @@ public class ConsoleTest {
 		for(int i = sutSpy.SWAP_ROUNDS; i > 0; i --) {
 			verify(cwMock).println(sutSpy.SWAP_MSG1 + i + sutSpy.SWAP_MSG2);
 		}
-	}
-	
-	@Test
-	public void shouldDisplayInstructionsAfterGameEnd() {
-		setUp();
-		when(mockGame.getWinner()).thenReturn(mockPlayer);
-		when(mockPlayer.getScore()).thenReturn(Player.Score.PAIR);
-		
-		sutSpy.runGame();
-		
-		InOrder order = inOrder(sutSpy, cwMock);
-		order.verify(sutSpy).presentHand(mockPlayer, false);
-		order.verify(cwMock).println(sutSpy.INSTRUCTIONS);
 	}
 	
 	private void setUp() {
