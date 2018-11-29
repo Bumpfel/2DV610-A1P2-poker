@@ -51,7 +51,7 @@ public class ConsoleTest {
 	public void shouldNotQuitAfterOneRound() {
 		setUp();
 		
-		when(cwMock.getInput()).thenReturn("p", "p", "");
+		when(cwMock.getInput()).thenReturn("p", "p", "q");
 		sutSpy.play();
 		verify(mockGame, times(2)).newGame();
 	}
@@ -313,12 +313,22 @@ public class ConsoleTest {
 	public void shouldPrintErrorMsgOnBadPlayInput() {
 		setUp();
 		
-		when(cwMock.getInput()).thenReturn("asd");
+		when(cwMock.getInput()).thenReturn("", "q");
 		sutSpy.play();
 		
 		InOrder order = inOrder(cwMock);
 		order.verify(cwMock).println(sutSpy.INVALID_INPUT);
 		order.verify(cwMock).pause(sutSpy.PAUSE_TIME);
+	}
+	
+	@Test
+	public void gameShouldContinueOnBadInput() {
+		setUp();
+		
+		when(cwMock.getInput()).thenReturn("", "q");
+		sutSpy.play();
+		
+		verify(cwMock, times(2)).getInput();
 	}
 	
 	private void setUp() {
