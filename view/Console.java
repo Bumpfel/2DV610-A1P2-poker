@@ -116,6 +116,7 @@ public class Console {
 		Player player = game.getPlayer();
 		cw.println(presentHand(player, true));
 		cw.println(SWAP_MSG1 + roundsLeft + SWAP_MSG2);
+		presentScore(player);
 	}
 	
 	public void clearScreen() {
