@@ -77,6 +77,7 @@ public class Console {
 	public String presentHand(Player player, boolean showNumbers) {
 		if(player == null) 
 			return null;
+		player.sortByDenomination();
 		StringBuilder str = new StringBuilder();
 		int i = 1;
 		for(Card c : player.getHand()) {
