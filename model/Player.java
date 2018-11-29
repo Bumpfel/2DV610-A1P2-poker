@@ -50,15 +50,13 @@ public class Player {
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
 		
-		if(hand.size() != MAX_HAND_SIZE)
-			return null;
-		else if(isStraight(values) && isFlush())
+		if(isStraight(values) && isFlush())
 			return Score.STRAIGHT_FLUSH;
 		else if(sortedValues[12] == 4)
 			return Score.FOUR_OF_A_KIND;
 		else if(sortedValues[12] == 3 && sortedValues[11] == 2)
 			return Score.FULL_HOUSE;
-		else if(isFlush())
+		else if(isFlush() && hand.size() == 5)
 			return Score.FLUSH;
 		else if(isStraight(values))
 			return Score.STRAIGHT;
