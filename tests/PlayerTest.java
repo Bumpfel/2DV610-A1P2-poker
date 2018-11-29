@@ -103,7 +103,7 @@ public class PlayerTest {
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		
 		Player.Score expected = Player.Score.HIGH_CARD;
 		Player.Score actual = sut.getScore();
