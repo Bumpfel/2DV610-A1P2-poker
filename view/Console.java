@@ -33,8 +33,11 @@ public class Console {
 	}
 	
 	private boolean wantsToPlay(String input) {
-		if(!input.equals("p") && !input.equals("q"))
+		if(!input.equals("p") && !input.equals("q")) {
 			printInvalidInputMsg();
+			clearScreen();
+			play();
+		}
 		return input.equals("p");
 	}
 	
@@ -57,7 +60,8 @@ public class Console {
 		}
 		catch(NumberFormatException e) {
 			if(!input.equals("f"))
-				printInvalidInputMsg();			}
+				printInvalidInputMsg();
+		}
 		return !input.equals("f");
 	}
 	
