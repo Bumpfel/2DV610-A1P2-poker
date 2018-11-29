@@ -58,7 +58,7 @@ public class Player {
 			return Score.FULL_HOUSE;
 		else if(isFlush() && hand.size() == 5)
 			return Score.FLUSH;
-		else if(isStraight(values))
+		else if(isStraight(values) && hand.size() == 5)
 			return Score.STRAIGHT;
 		else if(sortedValues[12] == 3)
 			return Score.THREE_OF_A_KIND;
