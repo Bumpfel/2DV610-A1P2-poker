@@ -331,6 +331,14 @@ public class ConsoleTest {
 		verify(cwMock, times(2)).getInput();
 	}
 	
+	@Test
+	public void shouldPresentCurrentScoreWhenThrowing() {
+		setUp();
+		sutSpy.throwCards(0);
+		
+		verify(sutSpy).presentScore(mockPlayer);
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
@@ -338,6 +346,7 @@ public class ConsoleTest {
 		cwMock = mock(ConsoleWrapper.class); 
 		when(cwMock.getInput()).thenReturn("q");
 		when(mockGame.getPlayer()).thenReturn(mockPlayer);
+		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
 		when(cwMock.getThrowCardInput()).thenReturn("f");
 		sutSpy = spy(new Console(mockGame, cwMock));
 	}
