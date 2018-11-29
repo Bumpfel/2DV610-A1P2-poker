@@ -241,16 +241,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void shouldReturnNullIfHandIncomplete() {
-		Player sut = new Player(name);
-		
-		sut.dealCard(mockAoS());
-		Player.Score actual = sut.getScore();
-		
-		assertNull(actual);
-	}
-	
-	@Test
 	public void shouldGetPlayerName() {
 		String name = "Johnny";
 		Player sut = new Player(name);
