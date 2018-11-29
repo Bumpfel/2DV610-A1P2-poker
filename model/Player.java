@@ -50,7 +50,7 @@ public class Player {
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
 		
-		if(isStraight(values) && isFlush())
+		if(isStraight(values) && isFlush() && hand.size() == 5)
 			return Score.STRAIGHT_FLUSH;
 		else if(sortedValues[12] == 4)
 			return Score.FOUR_OF_A_KIND;
