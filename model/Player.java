@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Player {
 	
@@ -99,5 +100,6 @@ public class Player {
 	}
 	
 	public void sortByDenomination() {
+		Collections.sort(hand, (s1, s2) -> s1.getDenomination().ordinal() - s2.getDenomination().ordinal());
 	}
 }
