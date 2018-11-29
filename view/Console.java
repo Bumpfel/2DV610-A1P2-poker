@@ -114,9 +114,9 @@ public class Console {
 		clearScreen();
 		cw.println(SWAP_INSTRUCTIONS);
 		Player player = game.getPlayer();
+		cw.println(presentScore(player));
 		cw.println(presentHand(player, true));
 		cw.println(SWAP_MSG1 + roundsLeft + SWAP_MSG2);
-		cw.println(presentScore(player));
 	}
 	
 	public void clearScreen() {
