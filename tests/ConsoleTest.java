@@ -336,7 +336,7 @@ public class ConsoleTest {
 		setUp();
 		sutSpy.throwCards(0);
 		
-		verify(sutSpy).presentScore(mockPlayer);
+		verify(cwMock, atLeastOnce()).println(sutSpy.presentScore(mockPlayer));
 	}
 	
 	private void setUp() {
