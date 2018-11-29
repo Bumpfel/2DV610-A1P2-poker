@@ -118,6 +118,7 @@ public class ConsoleTest {
 	public void shouldPresentWinningScoreOnRunGame() {
 		setUp();
 		
+		when(mockGame.getPlayer()).thenReturn(null);
 		when(mockGame.getWinner()).thenReturn(mockPlayer);
 		when(mockPlayer.getScore()).thenReturn(Player.Score.TWO_PAIR);
 		sutSpy.runGame();
