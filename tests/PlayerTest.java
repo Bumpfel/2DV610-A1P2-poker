@@ -163,6 +163,19 @@ public class PlayerTest {
 		Player.Score actual = sut.getScore();
 		
 		assertEquals(expected, actual);
+				
+		//reset
+		sut = new Player(name);
+		
+		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.KING, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.QUEEN, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.TEN, Card.Suit.CLUBS);
+		
+		actual = sut.getScore();
+		
+		assertEquals(expected, actual);
 	}
 	
 	@Test
