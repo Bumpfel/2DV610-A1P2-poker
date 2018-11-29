@@ -340,6 +340,17 @@ public class ConsoleTest {
 		verify(cwMock, atLeastOnce()).println(sutSpy.presentScore(mockPlayer));
 	}
 	
+	@Test
+	public void shouldPresentScoreInOrder() {
+		setUp();
+		
+		sutSpy.throwCards(0);
+		
+		InOrder order = inOrder(cwMock);
+		order.verify(cwMock, atLeastOnce()).println(sutSpy.presentScore(mockPlayer));
+		order.verify(cwMock, atLeastOnce()).println(sutSpy.presentHand(mockPlayer, true));
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
