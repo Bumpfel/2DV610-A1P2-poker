@@ -87,9 +87,6 @@ public class PlayerTest {
 		
 		Card mockCard = mockAoS();
 		
-		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
 		
