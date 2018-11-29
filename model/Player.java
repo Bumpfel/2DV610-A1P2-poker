@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Player {
 	
@@ -42,40 +44,63 @@ public class Player {
 	}
 	
 	public Score getScore() {
-		int values[] = new int[13];
+		int values[] = new int[14];
 		for(Card c : hand) {
 			int value = c.getDenomination().ordinal();
 			values[value] ++;
 		}
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
+//		Arrays.sort(sortedValues, Collections.reverseOrder());
+		if(values[0] == 1)
+			values[13] = 1;
 		
 		if(isStraight(values) && isFlush() && hand.size() == 5)
 			return Score.STRAIGHT_FLUSH;
-		else if(sortedValues[12] == 4)
+		else if(sortedValues[13] == 4)
 			return Score.FOUR_OF_A_KIND;
-		else if(sortedValues[12] == 3 && sortedValues[11] == 2)
+		else if(sortedValues[13] == 3 && sortedValues[12] == 2)
 			return Score.FULL_HOUSE;
 		else if(isFlush() && hand.size() == 5)
 			return Score.FLUSH;
 		else if(isStraight(values) && hand.size() == 5)
 			return Score.STRAIGHT;
-		else if(sortedValues[12] == 3)
+		else if(sortedValues[13] == 3)
 			return Score.THREE_OF_A_KIND;
-		else if(sortedValues[12] == 2 && sortedValues[11] == 2)
+		else if(sortedValues[13] == 2 && sortedValues[12] == 2)
 			return Score.TWO_PAIR;
-		else if(sortedValues[12] == 2)
+		else if(sortedValues[13] == 2)
 			return Score.PAIR;
 		else
 			return Score.HIGH_CARD;
 	}
 	
+	public static void main(String args[]) {
+		Player p = new Player("");
+		p.dealCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
+		p.dealCard(new Card(Card.Denomination.TWO, Card.Suit.CLUBS));
+		p.dealCard(new Card(Card.Denomination.THREE, Card.Suit.CLUBS));
+		p.dealCard(new Card(Card.Denomination.FOUR, Card.Suit.CLUBS));
+		p.dealCard(new Card(Card.Denomination.FIVE, Card.Suit.CLUBS));
+		
+		Player p2 = new Player("");
+		p2.dealCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
+		p2.dealCard(new Card(Card.Denomination.KING, Card.Suit.CLUBS));
+		p2.dealCard(new Card(Card.Denomination.QUEEN, Card.Suit.CLUBS));
+		p2.dealCard(new Card(Card.Denomination.JACK, Card.Suit.CLUBS));
+		p2.dealCard(new Card(Card.Denomination.TEN, Card.Suit.CLUBS));
+	}
+	
 	private boolean isStraight(int[] values) {
 		for(int i = 0; i < values.length; i ++) {
 			if(values[i] == 1) {
+				if(i == 0 && values[i] == 1 && values[i + 1] == 0) {
+					continue;
+				}
 				for(int j = 1; j < hand.size(); j ++) {
-					if(values[i + j] != 1)
+					if(values[i + j] != 1) {
 						return false;
+					}
 				}
 				return true;
 			}
