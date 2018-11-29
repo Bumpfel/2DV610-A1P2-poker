@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Player {
 	
@@ -51,7 +49,7 @@ public class Player {
 		}
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
-//		Arrays.sort(sortedValues, Collections.reverseOrder());
+		// If there's an Ace, add it at the end (to calc high straights)
 		if(values[0] == 1)
 			values[13] = 1;
 		
@@ -75,28 +73,11 @@ public class Player {
 			return Score.HIGH_CARD;
 	}
 	
-	public static void main(String args[]) {
-		Player p = new Player("");
-		p.dealCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
-		p.dealCard(new Card(Card.Denomination.TWO, Card.Suit.CLUBS));
-		p.dealCard(new Card(Card.Denomination.THREE, Card.Suit.CLUBS));
-		p.dealCard(new Card(Card.Denomination.FOUR, Card.Suit.CLUBS));
-		p.dealCard(new Card(Card.Denomination.FIVE, Card.Suit.CLUBS));
-		
-		Player p2 = new Player("");
-		p2.dealCard(new Card(Card.Denomination.ACE, Card.Suit.SPADES));
-		p2.dealCard(new Card(Card.Denomination.KING, Card.Suit.CLUBS));
-		p2.dealCard(new Card(Card.Denomination.QUEEN, Card.Suit.CLUBS));
-		p2.dealCard(new Card(Card.Denomination.JACK, Card.Suit.CLUBS));
-		p2.dealCard(new Card(Card.Denomination.TEN, Card.Suit.CLUBS));
-	}
-	
 	private boolean isStraight(int[] values) {
 		for(int i = 0; i < values.length; i ++) {
 			if(values[i] == 1) {
-				if(i == 0 && values[i] == 1 && values[i + 1] == 0) {
+				if(i == 0 && values[i] == 1 && values[i + 1] == 0)
 					continue;
-				}
 				for(int j = 1; j < hand.size(); j ++) {
 					if(values[i + j] != 1) {
 						return false;
