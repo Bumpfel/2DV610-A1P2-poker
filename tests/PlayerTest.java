@@ -312,6 +312,29 @@ public class PlayerTest {
 		}
 	}
 	
+	@Test
+	public void shouldCountAceAsHighestByDefault() {
+		Player sut = new Player(name);
+		
+		Card mockCard1 = mockCard(Card.Denomination.ACE, Card.Suit.CLUBS);
+		Card mockCard2 = mockCard(Card.Denomination.KING, Card.Suit.CLUBS);
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		
+		sut.sortByDenomination();
+		
+		ArrayList<Card> compareList = new ArrayList<>();
+		compareList.add(mockCard2);
+		compareList.add(mockCard1);
+
+		int i = 0;
+		for(Card c : sut.getHand()) {
+			assertSame(c, compareList.get(i));
+			i ++;
+		}
+	}
+	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
 	}
