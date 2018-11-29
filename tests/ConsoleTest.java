@@ -343,6 +343,14 @@ public class ConsoleTest {
 		order.verify(cwMock, atLeastOnce()).println(sutSpy.presentHand(mockPlayer, true));
 	}
 	
+	@Test
+	public void presentHandShouldSort() {
+		setUp();
+		sutSpy.presentHand(mockPlayer, false);
+		
+		verify(mockPlayer).sortByDenomination();
+	}
+	
 	private void setUp() {
 		mockGame = mock(Game.class);
 		mockPlayer = mock(Player.class);
