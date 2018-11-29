@@ -100,13 +100,11 @@ public class PlayerTest {
 	public void shouldDetermineHighCard() {
 		Player sut = new Player(name);
 		
-		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
-
-
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.SPADES);
+		
 		Player.Score expected = Player.Score.HIGH_CARD;
 		Player.Score actual = sut.getScore();
 		
