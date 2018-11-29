@@ -4,6 +4,8 @@ import model.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class PlayerTest {
@@ -277,6 +279,37 @@ public class PlayerTest {
 		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void shouldSortByDenomination() {
+		Player sut = new Player(name);
+		
+		Card mockCard1 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
+		Card mockCard2 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		Card mockCard3 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
+		Card mockCard4 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.SIX, Card.Suit.CLUBS);
+		
+		sut.dealCard(mockCard5);
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard2);
+		sut.sortByDenomination();
+		
+		ArrayList<Card> compareList = new ArrayList<>();
+		compareList.add(mockCard1);
+		compareList.add(mockCard2);
+		compareList.add(mockCard3);
+		compareList.add(mockCard4);
+		compareList.add(mockCard5);
+		
+		int i = 0;
+		for(Card c : sut.getHand()) {
+			assertSame(c, compareList.get(i));
+			i ++;
+		}
 	}
 	
 	private Card mockAoS() {
