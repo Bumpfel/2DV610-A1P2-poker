@@ -331,15 +331,7 @@ public class ConsoleTest {
 		
 		verify(cwMock, times(2)).getInput();
 	}
-	
-	@Test
-	public void shouldPresentCurrentScoreWhenThrowing() {
-		setUp();
-		sutSpy.throwCards(0);
 		
-		verify(cwMock, atLeastOnce()).println(sutSpy.presentScore(mockPlayer));
-	}
-	
 	@Test
 	public void shouldPresentScoreInOrder() {
 		setUp();
