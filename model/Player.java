@@ -45,14 +45,14 @@ public class Player {
 	public Score getScore() {
 		int values[] = new int[14];
 		for(Card c : hand) {
-			int value = c.getDenomination().ordinal();
+			int value = c.getDenomination().ordinal() + 1;
 			values[value] ++;
 		}
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
-		// If there's an Ace, add it at the end (to calc high straights)
-		if(values[0] == 1)
-			values[13] = 1;
+		// If there's an Ace, add it at the start (to calc low straights)
+		if(values[13] == 1)
+			values[0] = 1;
 		
 		if(isStraight(values) && isFlush() && hand.size() == 5)
 			return Score.STRAIGHT_FLUSH;
