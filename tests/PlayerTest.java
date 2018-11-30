@@ -335,6 +335,13 @@ public class PlayerTest {
 		}
 	}
 	
+	@Test
+	public void shouldNotThrowExceptionOnEmptyHand() {
+		Player sut = new Player(name);
+		
+		sut.getScore();
+	}
+	
 	private Card mockAoS() {
 		return mockCard(Card.Denomination.ACE, Card.Suit.SPADES);
 	}
