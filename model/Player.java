@@ -54,15 +54,15 @@ public class Player {
 		if(values[13] == 1)
 			values[0] = 1;
 		
-		if(isStraight(values) && isFlush() && hand.size() == 5)
+		if(hand.size() == 5 && isStraight(values) && isFlush())
 			return Score.STRAIGHT_FLUSH;
 		else if(sortedValues[13] == 4)
 			return Score.FOUR_OF_A_KIND;
 		else if(sortedValues[13] == 3 && sortedValues[12] == 2)
 			return Score.FULL_HOUSE;
-		else if(isFlush() && hand.size() == 5)
+		else if(hand.size() == 5 && isFlush())
 			return Score.FLUSH;
-		else if(isStraight(values) && hand.size() == 5)
+		else if(hand.size() == 5 && isStraight(values))
 			return Score.STRAIGHT;
 		else if(sortedValues[13] == 3)
 			return Score.THREE_OF_A_KIND;
