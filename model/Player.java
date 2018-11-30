@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Player {
 	
@@ -23,7 +24,11 @@ public class Player {
 		return hand;
 	}
 	
-	public int getSize() {
+	public void removeCard(Card c) {
+		hand.remove(c);
+	}
+	
+	public int getHandSize() {
 		return hand.size();
 	}
 	
@@ -38,31 +43,32 @@ public class Player {
 	}
 	
 	public Score getScore() {
-		int values[] = new int[13];
+		int values[] = new int[14];
 		for(Card c : hand) {
-			int value = c.getDenomination().ordinal();
+			int value = c.getDenomination().ordinal() + 1;
 			values[value] ++;
 		}
 		int[] sortedValues = Arrays.copyOf(values, values.length);
 		Arrays.sort(sortedValues);
+		// If there's an Ace, add it at the start (to calc low straights)
+		if(values[13] == 1)
+			values[0] = 1;
 		
-		if(hand.size() != MAX_HAND_SIZE)
-			return null;
-		else if(isStraight(values) && isFlush())
+		if(hand.size() == 5 && isStraight(values) && isFlush())
 			return Score.STRAIGHT_FLUSH;
-		else if(sortedValues[12] == 4)
+		else if(sortedValues[13] == 4)
 			return Score.FOUR_OF_A_KIND;
-		else if(sortedValues[12] == 3 && sortedValues[11] == 2)
+		else if(sortedValues[13] == 3 && sortedValues[12] == 2)
 			return Score.FULL_HOUSE;
-		else if(isFlush())
+		else if(hand.size() == 5 && isFlush())
 			return Score.FLUSH;
-		else if(isStraight(values))
+		else if(hand.size() == 5 && isStraight(values))
 			return Score.STRAIGHT;
-		else if(sortedValues[12] == 3)
+		else if(sortedValues[13] == 3)
 			return Score.THREE_OF_A_KIND;
-		else if(sortedValues[12] == 2 && sortedValues[11] == 2)
+		else if(sortedValues[13] == 2 && sortedValues[12] == 2)
 			return Score.TWO_PAIR;
-		else if(sortedValues[12] == 2)
+		else if(sortedValues[13] == 2)
 			return Score.PAIR;
 		else
 			return Score.HIGH_CARD;
@@ -71,9 +77,12 @@ public class Player {
 	private boolean isStraight(int[] values) {
 		for(int i = 0; i < values.length; i ++) {
 			if(values[i] == 1) {
+				if(i == 0 && values[i] == 1 && values[i + 1] == 0)
+					continue;
 				for(int j = 1; j < hand.size(); j ++) {
-					if(values[i + j] != 1)
+					if(values[i + j] != 1) {
 						return false;
+					}
 				}
 				return true;
 			}
@@ -88,5 +97,9 @@ public class Player {
 				return false;
 		}
 		return true;
+	}
+	
+	public void sortByDenomination() {
+		Collections.sort(hand, (s1, s2) -> s1.getDenomination().ordinal() - s2.getDenomination().ordinal());
 	}
 }

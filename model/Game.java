@@ -16,28 +16,31 @@ public class Game {
 		deck.shuffle();
 		player.clearHand();
 		for(int i = 0; i < CARDS_TO_DEAL; i ++) {
-			Card c = deck.getTopCard();
-			player.dealCard(c);
+			dealFromDeck(player);
 		}
-	}
-	
-	public String presentScore(Player player) {
-		String score = player.getScore().toString();
-		String str = score.substring(0, 1) + score.substring(1).toLowerCase();
-		String ret = str.replace('_', ' ');
-		return ret;
-	}
-	
-	public String presentHand(Player player) {
-		StringBuilder str = new StringBuilder();
-		for(Card c : player.getHand()) {
-			str.append(c.toString() + "\n");
-		}
-		return str.toString();
 	}
 	
 	public Player getWinner() {
 		return player;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void fillUpHand(Player player) {
+		for(int i = player.getHandSize(); i < CARDS_TO_DEAL; i ++) {
+			dealFromDeck(player);
+		}
+	}
+	
+	public void throwCard(Player p, Card c) {
+		p.removeCard(c);
+	}
+	
+	private void dealFromDeck(Player player) {
+		Card c = deck.getTopCard();
+		player.dealCard(c);
 	}
 
 }

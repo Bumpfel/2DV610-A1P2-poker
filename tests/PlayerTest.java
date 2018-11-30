@@ -4,6 +4,8 @@ import model.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class PlayerTest {
@@ -21,7 +23,7 @@ public class PlayerTest {
 	public void shouldBeAbleToGetSizeOfHand() {
 		Player sut = new Player(name);
 		
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		int expected = 0;
 		assertEquals(expected, actual);
 		
@@ -35,7 +37,7 @@ public class PlayerTest {
 		sut.dealCard(mockCard); // I name this dealCard since I figure I'll make a Game class that calls this method, and it wouldn't make sense semantically to call player.receiveCard()
 		
 		int expected = 1;
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
 	}
@@ -76,7 +78,7 @@ public class PlayerTest {
 		sut.clearHand();
 		
 		int expected = 0;
-		int actual = sut.getSize();
+		int actual = sut.getHandSize();
 		
 		assertEquals(expected, actual);
 	}
@@ -87,9 +89,6 @@ public class PlayerTest {
 		
 		Card mockCard = mockAoS();
 		
-		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
 		sut.dealCard(mockCard);
 		sut.dealCard(mockCard); // dealing the same card won't happen when there is a real deck, so I don't need to test for it
 		
@@ -103,13 +102,11 @@ public class PlayerTest {
 	public void shouldDetermineHighCard() {
 		Player sut = new Player(name);
 		
-		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
 		mockAndDealCard(sut, Card.Denomination.TWO, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.THREE, Card.Suit.CLUBS);
-		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.FOUR, Card.Suit.CLUBS);
 		mockAndDealCard(sut, Card.Denomination.FIVE, Card.Suit.CLUBS);
-
-
+		
 		Player.Score expected = Player.Score.HIGH_CARD;
 		Player.Score actual = sut.getScore();
 		
@@ -166,6 +163,19 @@ public class PlayerTest {
 		
 		Player.Score expected = Player.Score.STRAIGHT;
 		Player.Score actual = sut.getScore();
+		
+		assertEquals(expected, actual);
+				
+		//reset
+		sut = new Player(name);
+		
+		mockAndDealCard(sut, Card.Denomination.ACE, Card.Suit.SPADES);
+		mockAndDealCard(sut, Card.Denomination.KING, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.QUEEN, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.JACK, Card.Suit.CLUBS);
+		mockAndDealCard(sut, Card.Denomination.TEN, Card.Suit.CLUBS);
+		
+		actual = sut.getScore();
 		
 		assertEquals(expected, actual);
 	}
@@ -241,16 +251,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void shouldReturnNullIfHandIncomplete() {
-		Player sut = new Player(name);
-		
-		sut.dealCard(mockAoS());
-		Player.Score actual = sut.getScore();
-		
-		assertNull(actual);
-	}
-	
-	@Test
 	public void shouldGetPlayerName() {
 		String name = "Johnny";
 		Player sut = new Player(name);
@@ -265,6 +265,81 @@ public class PlayerTest {
 		expected = name;
 		actual = sut.getName();
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void shouldRemoveCardFromHand() {
+		Player sut = new Player(name);
+		
+		Card mockCard = mockAoS();
+		sut.dealCard(mockCard);
+		sut.removeCard(mockCard);
+		
+		int expected = 0;
+		int actual = sut.getHandSize();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void shouldSortByDenomination() {
+		Player sut = new Player(name);
+		
+		Card mockCard1 = mockCard(Card.Denomination.TWO, Card.Suit.CLUBS);
+		Card mockCard2 = mockCard(Card.Denomination.THREE, Card.Suit.CLUBS);
+		Card mockCard3 = mockCard(Card.Denomination.FOUR, Card.Suit.CLUBS);
+		Card mockCard4 = mockCard(Card.Denomination.FIVE, Card.Suit.CLUBS);
+		Card mockCard5 = mockCard(Card.Denomination.SIX, Card.Suit.CLUBS);
+		
+		sut.dealCard(mockCard5);
+		sut.dealCard(mockCard3);
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard4);
+		sut.dealCard(mockCard2);
+		sut.sortByDenomination();
+		
+		ArrayList<Card> compareList = new ArrayList<>();
+		compareList.add(mockCard1);
+		compareList.add(mockCard2);
+		compareList.add(mockCard3);
+		compareList.add(mockCard4);
+		compareList.add(mockCard5);
+		
+		int i = 0;
+		for(Card c : sut.getHand()) {
+			assertSame(c, compareList.get(i));
+			i ++;
+		}
+	}
+	
+	@Test
+	public void shouldCountAceAsHighestByDefault() {
+		Player sut = new Player(name);
+		
+		Card mockCard1 = mockCard(Card.Denomination.ACE, Card.Suit.CLUBS);
+		Card mockCard2 = mockCard(Card.Denomination.KING, Card.Suit.CLUBS);
+		
+		sut.dealCard(mockCard1);
+		sut.dealCard(mockCard2);
+		
+		sut.sortByDenomination();
+		
+		ArrayList<Card> compareList = new ArrayList<>();
+		compareList.add(mockCard2);
+		compareList.add(mockCard1);
+
+		int i = 0;
+		for(Card c : sut.getHand()) {
+			assertSame(c, compareList.get(i));
+			i ++;
+		}
+	}
+	
+	@Test
+	public void shouldNotThrowExceptionOnEmptyHand() {
+		Player sut = new Player(name);
+		
+		sut.getScore();
 	}
 	
 	private Card mockAoS() {
